@@ -97,6 +97,10 @@ export const FooterTickIcon = styled.img `
 
 export const FooterCheckBtnWrapper = styled.div `
   text-align: right;
+  &:hover > button {
+    //background-color: rgb(${props => props.btnCheckBgcHover});
+    background-color: rgb(${props => props.btnCheckBgcHover});
+  }
 `
 
 export const FooterCheckBtn = styled.button `
@@ -120,6 +124,11 @@ export const CheckBtnText = styled.span `
 
 export const FooterSkipBtnWrapper = styled.div `
   text-align: left;
+  &:hover > button {
+    color: rgb(${props => props.btnSkipBorderColorHover});
+    background-color: rgb(${props => props.btnSkipBgcHover});
+    border-color: rgb(${props => props.btnSkipBorderColorHover});
+  }
 `
 
 export const FooterSkipBtn = styled(FooterCheckBtn) `

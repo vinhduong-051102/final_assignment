@@ -35,7 +35,7 @@ const AssigmentWrapper = () => {
                 </HeaderLayout>
             </HeaderContainer>
             <div>body</div>
-            <Footer statusCode={3} answer={"answer"} comment={'comment'}/>
+            <Footer statusCode={2} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>
 
     </>

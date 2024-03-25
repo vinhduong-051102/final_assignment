@@ -5,7 +5,8 @@ import {
     FooterContainer,
     FooterInfoTextContainer,
     FooterInfoWrapper,
-    FooterLayout, FooterSkipBtn, FooterSkipBtnWrapper,
+    FooterLayout, FooterSkipBtn,
+    FooterSkipBtnWrapper,
     FooterTickIcon,
     FooterTickIconContainer,
     InfoTextComment,
@@ -14,8 +15,8 @@ import {
 import {tickIcon, wrongIcon} from "../../../../constants/icons";
 import {
     colorCardinal,
-    colorFireAnt, colorHare,
-    colorOwl,
+    colorFireAnt, colorFireArtHover, colorHare,
+    colorOwl, colorOwlHover,
     colorSeaSponge, colorSnow, colorSwan,
     colorTreeFlog,
     colorWalkingFish
@@ -32,16 +33,20 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
             isChecked: false,
             bgc: colorSnow,
             btnSkipBgc: colorSnow,
+            btnSkipBgcHover: colorSwan,
+            btnSkipBorderColorHover: colorHare,
             btnSkipTextColor: colorHare,
             btnSkipBorderColor: colorSwan,
             btnSkipText: 'Bỏ qua',
             btnCheckBgc: colorSwan,
+            btnCheckBgcHover: null,
             btnCheckBorderColor: colorSwan,
             btnCheckTextColor: colorHare,
             btnCheckText: 'Kiểm tra',
             iconSrc: null,
             textInfoColor: null,
             isDisabledCheckBtn: true,
+
         },
         // Trạng thái 1
         {
@@ -51,12 +56,15 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
             bgc: colorSeaSponge,
             textInfoColor: colorTreeFlog,
             btnCheckBgc: colorOwl,
+            btnCheckBgcHover: colorOwlHover,
             btnCheckBorderColor: colorTreeFlog,
             btnCheckTextColor: colorSnow,
             btnCheckText: 'Tiếp tục',
             btnSkipBgc: null,
             btnSkipTextColor: null,
             btnSkipBorderColor: null,
+            btnSkipBgcHover: null,
+            btnSkipBorderColorHover: null,
             isDisabledCheckBtn: false,
 
         },
@@ -68,12 +76,15 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
             bgc: colorWalkingFish,
             textInfoColor: colorFireAnt,
             btnCheckBgc: colorCardinal,
+            btnCheckBgcHover: colorFireArtHover,
             btnCheckBorderColor: colorFireAnt,
             btnCheckTextColor: colorSnow,
             btnCheckText: 'Tiếp tục',
             btnSkipBgc: null,
             btnSkipTextColor: null,
             btnSkipBorderColor: null,
+            btnSkipBgcHover: null,
+            btnSkipBorderColorHover: null,
             isDisabledCheckBtn: false,
 
         },
@@ -84,8 +95,11 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
             btnSkipBgc: colorSnow,
             btnSkipTextColor: colorHare,
             btnSkipBorderColor: colorSwan,
+            btnSkipBgcHover: colorSwan,
+            btnSkipBorderColorHover: colorHare,
             btnSkipText: 'Bỏ qua',
             btnCheckBgc: colorOwl,
+            btnCheckBgcHover: colorOwlHover,
             btnCheckBorderColor: colorTreeFlog,
             btnCheckTextColor: colorSnow,
             btnCheckText: 'Kiểm tra',
@@ -117,7 +131,10 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
                         </FooterInfoWrapper>
                     ) : (
                         // Nút bỏ qua
-                        <FooterSkipBtnWrapper>
+                        <FooterSkipBtnWrapper
+                            btnSkipBgcHover={footerStatus[statusCode].btnSkipBgcHover}
+                            btnSkipBorderColorHover={footerStatus[statusCode].btnSkipBorderColorHover}
+                        >
                             <FooterSkipBtn
                                 btnCheckBgc={footerStatus[statusCode].btnSkipBgc}
                                 btnCheckBorderColor={footerStatus[statusCode].btnSkipBorderColor}
@@ -132,7 +149,9 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
                     )
                 }
 
-                <FooterCheckBtnWrapper>
+                <FooterCheckBtnWrapper
+                    btnCheckBgcHover={footerStatus[statusCode].btnCheckBgcHover}
+                >
                     <FooterCheckBtn
                         btnCheckBgc={footerStatus[statusCode].btnCheckBgc}
                         btnCheckBorderColor={footerStatus[statusCode].btnCheckBorderColor}
