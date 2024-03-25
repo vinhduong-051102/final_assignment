@@ -2,7 +2,7 @@ import {
     AssignmentContainer,
     HeaderCancelBtn,
     HeaderContainer,
-    HeaderLayout, HeaderProcessBar, HeaderProcessBarContainer, XMarkIcon
+    HeaderLayout, HeaderProcessBar, HeaderProcessBarConsecutiveText, HeaderProcessBarContainer, XMarkIcon
 } from './styled'
 
 const AssigmentWrapper = () => {
@@ -25,7 +25,8 @@ const AssigmentWrapper = () => {
                         />
                     </HeaderCancelBtn>
                     <HeaderProcessBarContainer>
-                        <HeaderProcessBar percentage={24}/>
+                        <HeaderProcessBarConsecutiveText>2 lần liên tiếp</HeaderProcessBarConsecutiveText>
+                        <HeaderProcessBar percentage={99}/>
                     </HeaderProcessBarContainer>
                 </HeaderLayout>
             </HeaderContainer>

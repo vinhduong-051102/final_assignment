@@ -4,12 +4,14 @@ import {processBarHeight} from "../../constants/heights";
 
 
 export const HeaderContainer = styled.div `
-  @media (min-width: 700px) and (max-height: 650px) {
-    padding-top: 40px;
+  @media (max-width: 768px) and (min-width: 426px) {
+    padding: 40px;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 769px) {
     padding: 50px 40px 0;
+    margin: 0 auto;
+    width: 70%;
   }
 `
 
@@ -49,6 +51,27 @@ export const HeaderProcessBarContainer = styled.div `
   display: flex;
   align-items: center;
   border: 1px solid transparent;
+  position: relative;
+`
+
+export const HeaderProcessBarConsecutiveText = styled.div `
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  left: 10%;
+  letter-spacing: .8px;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  top: -130%;
+  color: rgb(${colorOwl});
+  @media (max-width: 768px) {
+    top: -170%;
+  }
+  @media (max-width: 768px) and (min-width: 426px) {
+    left: 20%;
+  }
 `
 
 export const HeaderProcessBar = styled.div `
@@ -59,7 +82,23 @@ export const HeaderProcessBar = styled.div `
   border-radius: calc(${processBarHeight} / 2 - 1px);
 `
 
+
 export const AssignmentContainer = styled.div `
   display: grid;
+  height: calc(100vh - 16px);
+
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+    grid-gap: 24px;
+    grid-template-rows: min-content 1fr min-content;
+    height: calc(100vh - 64px);
+
+  }
+  @media (min-width: 769px) {
+    height: calc(100vh - 16px);
+    grid-gap: 0;
+    grid-template-rows: 100px 1fr 140px;
+  }
+   
 `
 
