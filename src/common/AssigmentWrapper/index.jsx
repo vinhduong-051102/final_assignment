@@ -2,8 +2,14 @@ import {
     AssignmentContainer,
     HeaderCancelBtn,
     HeaderContainer,
-    HeaderLayout, HeaderProcessBar, HeaderProcessBarConsecutiveText, HeaderProcessBarContainer, XMarkIcon
+    HeaderLayout,
+    HeaderProcessBar,
+    HeaderProcessBarConsecutiveText,
+    HeaderProcessBarContainer,
+    XMarkIcon
 } from './styled'
+import {xIcon} from "../../constants/icons";
+import Footer from "./components/Footer";
 
 const AssigmentWrapper = () => {
     // dữ liệu cho header
@@ -19,19 +25,17 @@ const AssigmentWrapper = () => {
                 <HeaderLayout>
                     <HeaderCancelBtn>
                         <XMarkIcon
-                            src={
-                                "https://d35aaqx5ub95lt.cloudfront.net/images/4af31393cf9dee6fd35c07fc7155d404.svg"
-                            }
+                            src={xIcon}
                         />
                     </HeaderCancelBtn>
                     <HeaderProcessBarContainer>
                         <HeaderProcessBarConsecutiveText>2 lần liên tiếp</HeaderProcessBarConsecutiveText>
-                        <HeaderProcessBar percentage={99}/>
+                        <HeaderProcessBar percentage={process}/>
                     </HeaderProcessBarContainer>
                 </HeaderLayout>
             </HeaderContainer>
             <div>body</div>
-            <div>footer</div>
+            <Footer statusCode={3} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>
 
     </>

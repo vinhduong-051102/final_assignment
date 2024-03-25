@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import {colorOwl, colorSwan} from "../../constants/colors";
+import {colorOwl, colorSeaSponge, colorSnow, colorSwan, colorTreeFlog} from "../../constants/colors";
 import {processBarHeight} from "../../constants/heights";
-
 
 export const HeaderContainer = styled.div `
   @media (max-width: 768px) and (min-width: 426px) {
@@ -82,20 +81,17 @@ export const HeaderProcessBar = styled.div `
   border-radius: calc(${processBarHeight} / 2 - 1px);
 `
 
-
 export const AssignmentContainer = styled.div `
   display: grid;
-  height: calc(100vh - 16px);
-
+  height: 100vh;
+  position: relative;
   @media (max-width: 768px) {
-    padding: 24px 16px;
     grid-gap: 24px;
     grid-template-rows: min-content 1fr min-content;
-    height: calc(100vh - 64px);
-
+    padding: 35px 16px 0 16px;
+    height: calc(100vh - 35px);
   }
   @media (min-width: 769px) {
-    height: calc(100vh - 16px);
     grid-gap: 0;
     grid-template-rows: 100px 1fr 140px;
   }
