@@ -28,12 +28,14 @@ export const AssignmentPrompt = styled.div `
 `
 
 export const AssigmentContentLayout = styled.div `
-  align-self: center;
   display: grid;
   text-align: center;
-  align-items: center;
   grid-template-rows: min-content 1fr;
   gap: 16px;
+  @media (min-width: 768px) {
+    align-self: center;
+    align-items: center;
+  }
 `
 
 export const SpeakerBtnLayout = styled.div `
@@ -55,6 +57,14 @@ export const SpeakerIconBg = styled.button `
   &:hover {
     background-color: #1dbefd;
   }
+  &.mouseDown {
+    border-bottom-width: 0;
+    height: 136px;
+    margin-top: 4px;
+    @media (max-width: 767px) {
+      height: 96px;
+    }
+  }
 `
 
 export const SpeakerIconWrapper = styled.span `
@@ -70,9 +80,8 @@ export const SpeakerIcon = styled.img `
 export const AnswerLayout = styled.div `
   display: grid;
   grid-gap: 8px;
-  grid-template-columns: 1fr;
-  @media (min-width: 760px) {
-    grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
+  @media (min-width: 768px) {
     align-self: center;
   }
 `

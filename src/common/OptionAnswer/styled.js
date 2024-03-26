@@ -1,22 +1,32 @@
 import styled from "styled-components";
-import {colorHare, colorSwan} from "../../constants/colors";
+import {colorHare, colorSnow, colorSwan} from "../../constants/colors";
 
-export const OptionAnswerContainer = styled.div `
+export const OptionAnswerContainer = styled.button `
   border: 2px solid rgb(${colorSwan});
   border-bottom-width: 4px;
-  touch-action: manipulation;
   transform: translateZ(0);
   cursor: pointer;
   border-radius: 12px;
   padding: 12px 16px;
+  background-color: rgb(${colorSnow});
   &:hover {
     background-color: #f7f7f7;
+  }
+  &.mouseDown {
+    margin-top: 2px;
+    border-bottom-width: 2px;
+    height: calc(100% - 2px);
   }
 `
 
 export const OptionAnswerLayout = styled.div `
   display: grid;
   grid-template-columns: min-content 1fr;
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 100%;
+  }
 `
 
 export const OrderAnswer = styled.div `
@@ -30,6 +40,9 @@ export const OrderAnswer = styled.div `
   display: flex;
   justify-content: center;
   width: 30px;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `
 
 export const AnswerContent = styled.div `
@@ -41,5 +54,9 @@ export const AnswerContent = styled.div `
   text-align: center;
   text-overflow: ellipsis;
   white-space: normal;
+  @media (max-width: 767px) {
+    font-size: 9vw;
+    font-weight: 700;
+  }
 `
 

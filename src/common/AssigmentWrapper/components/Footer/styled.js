@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorOwl, colorSeaSponge, colorSnow, colorSwan, colorTreeFlog} from "../../../../constants/colors";
+import { colorSnow, colorSwan } from "../../../../constants/colors";
 import {btnBorderRadius} from "../../../../constants/border_radius";
 import {btnBoxShadow} from "../../../../constants/box_shadow_btn";
 
@@ -97,7 +97,7 @@ export const FooterTickIcon = styled.img `
 
 export const FooterCheckBtnWrapper = styled.div `
   text-align: right;
-  &:hover > button {
+  & > button:hover {
     background-color: rgb(${props => props.btnCheckBgcHover});
   }
 `
@@ -123,7 +123,7 @@ export const CheckBtnText = styled.span `
 
 export const FooterSkipBtnWrapper = styled.div `
   text-align: left;
-  &:hover > button {
+  & > button:hover {
     color: rgb(${props => props.btnSkipBorderColorHover});
     background-color: rgb(${props => props.btnSkipBgcHover});
     border-color: rgb(${props => props.btnSkipBorderColorHover});
