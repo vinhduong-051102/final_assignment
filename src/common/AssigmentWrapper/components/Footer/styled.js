@@ -98,7 +98,6 @@ export const FooterTickIcon = styled.img `
 export const FooterCheckBtnWrapper = styled.div `
   text-align: right;
   &:hover > button {
-    //background-color: rgb(${props => props.btnCheckBgcHover});
     background-color: rgb(${props => props.btnCheckBgcHover});
   }
 `

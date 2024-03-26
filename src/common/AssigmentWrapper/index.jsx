@@ -1,5 +1,5 @@
 import {
-    AssignmentContainer,
+    AssignmentContainer, BodyContainer,
     HeaderCancelBtn,
     HeaderContainer,
     HeaderLayout,
@@ -10,6 +10,7 @@ import {
 } from './styled'
 import {xIcon} from "../../constants/icons";
 import Footer from "./components/Footer";
+import ListenAndChoose from "../../container/ListenAndChoose";
 
 const AssigmentWrapper = () => {
     // dữ liệu cho header
@@ -34,8 +35,10 @@ const AssigmentWrapper = () => {
                     </HeaderProcessBarContainer>
                 </HeaderLayout>
             </HeaderContainer>
-            <div>body</div>
-            <Footer statusCode={2} answer={"answer"} comment={'comment'}/>
+            <BodyContainer>
+                <ListenAndChoose/>
+            </BodyContainer>
+            <Footer statusCode={3} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>
 
     </>

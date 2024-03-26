@@ -81,17 +81,33 @@ export const HeaderProcessBar = styled.div `
   border-radius: calc(${processBarHeight} / 2 - 1px);
 `
 
+export const BodyContainer = styled.div `
+  align-content: center;
+  display: grid;
+  font-size: 19px;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  @media (min-width: 768px) {
+    grid-template-columns: min-content;
+    grid-template-rows: min-content;
+  }
+`
+
 export const AssignmentContainer = styled.div `
   display: grid;
   height: 100vh;
   position: relative;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     grid-gap: 24px;
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-rows: min-content 1fr 190px;
     padding: 35px 16px 0 16px;
     height: calc(100vh - 35px);
   }
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     grid-gap: 0;
     grid-template-rows: 100px 1fr 140px;
   }
