@@ -4,16 +4,27 @@ import {
     OptionAnswerLayout, OrderAnswer
 } from "./styled";
 
-import { useRef } from "react";
+import {useEffect, useRef} from "react";
 
-const OptionAnswer = ({ no, content }) => {
+const OptionAnswer = ({ no, content, isSelected = false }) => {
     const btnRef = useRef(null)
+    const orderAnswerRef = useRef(null)
     const handleMouseDownOption = () => {
         btnRef.current.classList.add("mouseDown")
     }
     const handleMouseUpOption = () => {
         btnRef.current.classList.remove("mouseDown")
     }
+    useEffect(() => {
+        if(isSelected) {
+            btnRef.current.classList.add("selected")
+            orderAnswerRef.current.classList.add("selected")
+        } else {
+            btnRef.current.classList.remove("selected")
+            orderAnswerRef.current.classList.remove("selected")
+
+        }
+    }, [isSelected])
     return (
         <OptionAnswerContainer
             onMouseDown={handleMouseDownOption}
@@ -22,7 +33,7 @@ const OptionAnswer = ({ no, content }) => {
             ref={btnRef}
         >
             <OptionAnswerLayout >
-                <OrderAnswer>{no}</OrderAnswer>
+                <OrderAnswer ref={orderAnswerRef}>{no}</OrderAnswer>
                 <AnswerContent>{content}</AnswerContent>
             </OptionAnswerLayout>
         </OptionAnswerContainer>

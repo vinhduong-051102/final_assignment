@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorHare, colorSnow, colorSwan} from "../../constants/colors";
+import {colorBlueJay, colorHare, colorIguana, colorSnow, colorSwan} from "../../constants/colors";
 
 export const OptionAnswerContainer = styled.button `
   border: 2px solid rgb(${colorSwan});
@@ -16,6 +16,11 @@ export const OptionAnswerContainer = styled.button `
     margin-top: 2px;
     border-bottom-width: 2px;
     height: calc(100% - 2px);
+  }
+  &.selected {
+    background-color: rgb(${colorIguana});
+    color: rgb(${colorBlueJay});
+    border-color: rgb(132 216 255);
   }
 `
 
@@ -42,6 +47,10 @@ export const OrderAnswer = styled.div `
   width: 30px;
   @media (max-width: 767px) {
     display: none;
+  }
+  &.selected {
+    color: rgb(${colorBlueJay});
+    border-color: rgb(132 216 255);
   }
 `
 

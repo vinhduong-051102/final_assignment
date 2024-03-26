@@ -38,7 +38,7 @@ const ListenAndChoose = ({ prompt }) => {
                     </SpeakerIconBg>
                 </SpeakerBtnLayout>
                 <AnswerLayout>
-                    <OptionAnswer content={"catches"} no={1} />
+                    <OptionAnswer content={"catches"} no={1} isSelected />
                     <OptionAnswer content={1} no={1} />
                     <OptionAnswer content={1} no={1} />
                     <OptionAnswer content={1} no={1} />
