@@ -11,6 +11,7 @@ import {
 import {xIcon} from "../../constants/icons";
 import Footer from "./components/Footer";
 import ListenAndChoose from "../../container/ListenAndChoose";
+import ChooseAnswerByMeaning from "../../container/ChooseAnswerByMeaning";
 
 const AssigmentWrapper = () => {
     // dữ liệu cho header
@@ -36,7 +37,8 @@ const AssigmentWrapper = () => {
                 </HeaderLayout>
             </HeaderContainer>
             <BodyContainer>
-                <ListenAndChoose/>
+                {/*<ListenAndChoose/>*/}
+                <ChooseAnswerByMeaning/>
             </BodyContainer>
             <Footer statusCode={3} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>

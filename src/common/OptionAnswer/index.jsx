@@ -4,7 +4,7 @@ import {
     OptionAnswerLayout, OrderAnswer
 } from "./styled";
 
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 
 const OptionAnswer = ({ no, content, isSelected = false }) => {
     const btnRef = useRef(null)

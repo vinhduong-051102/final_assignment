@@ -63,9 +63,5 @@ export const AnswerContent = styled.div `
   text-align: center;
   text-overflow: ellipsis;
   white-space: normal;
-  @media (max-width: 767px) {
-    font-size: 9vw;
-    font-weight: 700;
-  }
 `
 

@@ -1,13 +1,12 @@
 import {
     AnswerLayout,
-    AssigmentContainer,
     AssigmentContentLayout,
-    AssignmentPrompt,
     SpeakerBtnLayout,
     SpeakerIcon,
     SpeakerIconBg,
     SpeakerIconWrapper
 } from "./styled";
+import { AssignmentPrompt, AssigmentContainer } from "../commonStyled";
 import speakerIcon from "../../utils/svg/speaker.svg"
 import OptionAnswer from "../../common/OptionAnswer";
 import { useRef } from "react";
