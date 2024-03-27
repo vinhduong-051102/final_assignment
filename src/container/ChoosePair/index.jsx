@@ -10,9 +10,9 @@ const ChoosePair = () => {
             </AssignmentPrompt>
             <AssigmentContentContainer>
                 <AssigmentContentLayout>
-                    <OptionAnswer no={1} isSelected/>
-                    <OptionAnswer no={2}/>
-                    <OptionAnswer no={3}/>
+                    <OptionAnswer no={1} isRight/>
+                    <OptionAnswer no={2} isDisabled/>
+                    <OptionAnswer no={3} isWrong/>
                     <OptionAnswer no={4}/>
                     <OptionAnswer no={5}/>
                     <OptionAnswer no={6} isSelected/>

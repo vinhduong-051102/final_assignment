@@ -1,5 +1,16 @@
 import styled from "styled-components";
-import {colorBlueJay, colorHare, colorIguana, colorSnow, colorSwan} from "../../constants/colors";
+import {
+    colorBlueJay,
+    colorFireAnt,
+    colorHare,
+    colorIguana,
+    colorOwl,
+    colorSeaSponge,
+    colorSnow,
+    colorSwan,
+    colorTurtle,
+    colorWalkingFish
+} from "../../constants/colors";
 
 export const OptionAnswerContainer = styled.button `
   border: 2px solid rgb(${colorSwan});
@@ -21,6 +32,21 @@ export const OptionAnswerContainer = styled.button `
     background-color: rgb(${colorIguana});
     color: rgb(${colorBlueJay});
     border-color: rgb(132 216 255);
+  }
+  &.right {
+    background-color: rgb(${colorSeaSponge});
+    color: rgb(${colorOwl});
+    border-color: rgb(${colorTurtle});
+  }
+  &.disabled {
+    background-color: rgb(${colorSnow});
+    color: #e5e5e5;
+    border-color: rgb(${colorSwan});
+  }
+  &.wrong {
+    background-color: rgb(${colorWalkingFish});
+    color: rgb(${colorFireAnt});
+    border-color: rgb(247, 157, 140);
   }
 `
 
@@ -52,6 +78,19 @@ export const OrderAnswer = styled.div `
     color: rgb(${colorBlueJay});
     border-color: rgb(132 216 255);
   }
+  &.right {
+    color: rgb(${colorOwl});
+    border-color: rgb(${colorTurtle});
+  }
+  &.disabled {
+    color: #e5e5e5;
+    border-color: rgb(${colorSwan});
+  }
+  &.wrong {
+    color: rgb(${colorFireAnt});
+    border-color: rgb(247, 157, 140);
+  }
+  
 `
 
 export const AnswerContent = styled.div `

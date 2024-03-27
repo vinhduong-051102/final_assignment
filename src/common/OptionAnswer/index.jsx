@@ -6,7 +6,7 @@ import {
 
 import { useEffect, useRef } from "react";
 
-const OptionAnswer = ({ no, content, isSelected = false }) => {
+const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isRight = false, isWrong = false }) => {
     const btnRef = useRef(null)
     const orderAnswerRef = useRef(null)
     const handleMouseDownOption = () => {
@@ -25,6 +25,40 @@ const OptionAnswer = ({ no, content, isSelected = false }) => {
 
         }
     }, [isSelected])
+
+    useEffect(() => {
+        if(isRight) {
+            btnRef.current.classList.add("right")
+            orderAnswerRef.current.classList.add("right")
+        } else {
+            btnRef.current.classList.remove("right")
+            orderAnswerRef.current.classList.remove("right")
+
+        }
+    }, [isRight])
+
+    useEffect(() => {
+        if(isWrong) {
+            btnRef.current.classList.add("wrong")
+            orderAnswerRef.current.classList.add("wrong")
+        } else {
+            btnRef.current.classList.remove("wrong")
+            orderAnswerRef.current.classList.remove("wrong")
+
+        }
+    }, [isWrong])
+
+    useEffect(() => {
+        if(isDisabled) {
+            btnRef.current.classList.add("disabled")
+            orderAnswerRef.current.classList.add("disabled")
+        } else {
+            btnRef.current.classList.remove("disabled")
+            orderAnswerRef.current.classList.remove("disabled")
+
+        }
+    }, [isDisabled])
+
     return (
         <OptionAnswerContainer
             onMouseDown={handleMouseDownOption}
