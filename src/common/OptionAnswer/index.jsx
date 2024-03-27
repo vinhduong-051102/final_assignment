@@ -6,14 +6,18 @@ import {
 
 import { useEffect, useRef } from "react";
 
-const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isRight = false, isWrong = false }) => {
+const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isRight = false, isWrong = false, onClick }) => {
     const btnRef = useRef(null)
     const orderAnswerRef = useRef(null)
     const handleMouseDownOption = () => {
-        btnRef.current.classList.add("mouseDown")
+        if (!(isRight || isWrong || isDisabled)) {
+            btnRef.current.classList.add("mouseDown")
+        }
     }
     const handleMouseUpOption = () => {
-        btnRef.current.classList.remove("mouseDown")
+        if (!(isRight || isWrong || isDisabled)) {
+            btnRef.current.classList.remove("mouseDown")
+        }
     }
     useEffect(() => {
         if(isSelected) {
@@ -55,18 +59,18 @@ const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isR
         } else {
             btnRef.current.classList.remove("disabled")
             orderAnswerRef.current.classList.remove("disabled")
-
         }
     }, [isDisabled])
 
     return (
         <OptionAnswerContainer
+            onClick={() => onClick(no)}
             onMouseDown={handleMouseDownOption}
             onMouseUp={handleMouseUpOption}
             onMouseOut={handleMouseUpOption}
             ref={btnRef}
         >
-            <OptionAnswerLayout >
+            <OptionAnswerLayout>
                 <OrderAnswer ref={orderAnswerRef}>{no}</OrderAnswer>
                 <AnswerContent>{content}</AnswerContent>
             </OptionAnswerLayout>

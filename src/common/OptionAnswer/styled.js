@@ -37,16 +37,20 @@ export const OptionAnswerContainer = styled.button `
     background-color: rgb(${colorSeaSponge});
     color: rgb(${colorOwl});
     border-color: rgb(${colorTurtle});
+    cursor: unset;
   }
   &.disabled {
     background-color: rgb(${colorSnow});
     color: #e5e5e5;
     border-color: rgb(${colorSwan});
+    cursor: unset;
   }
   &.wrong {
     background-color: rgb(${colorWalkingFish});
     color: rgb(${colorFireAnt});
     border-color: rgb(247, 157, 140);
+    cursor: unset;
+
   }
 `
 
