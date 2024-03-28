@@ -44,13 +44,15 @@ export const OptionAnswerContainer = styled.button `
     color: #e5e5e5;
     border-color: rgb(${colorSwan});
     cursor: unset;
+    transition: all 0.1s ease-in-out;
+
   }
   &.wrong {
     background-color: rgb(${colorWalkingFish});
     color: rgb(${colorFireAnt});
     border-color: rgb(247, 157, 140);
     cursor: unset;
-
+    
   }
 `
 
@@ -89,6 +91,7 @@ export const OrderAnswer = styled.div `
   &.disabled {
     color: #e5e5e5;
     border-color: rgb(${colorSwan});
+    transition: all 0.1s ease-in-out;
   }
   &.wrong {
     color: rgb(${colorFireAnt});
