@@ -6,7 +6,7 @@ import {
 
 import { useEffect, useRef } from "react";
 
-const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isRight = false, isWrong = false, onClick }) => {
+const OptionAnswer = ({ defaultHeight = '100%', no, content, isShowNo= true, isSelected = false, isDisabled = false, isRight = false, isWrong = false, onClick = () => {} }) => {
     const btnRef = useRef(null)
     const orderAnswerRef = useRef(null)
     const handleMouseDownOption = () => {
@@ -25,10 +25,11 @@ const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isR
             orderAnswerRef.current.classList.add("selected")
         } else {
             btnRef.current.classList.remove("selected")
-            orderAnswerRef.current.classList.remove("selected")
-
+            if (isShowNo) {
+                orderAnswerRef.current.classList.remove("selected")
+            }
         }
-    }, [isSelected])
+    }, [isSelected, isShowNo])
 
     useEffect(() => {
         if(isRight) {
@@ -36,10 +37,12 @@ const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isR
             orderAnswerRef.current.classList.add("right")
         } else {
             btnRef.current.classList.remove("right")
-            orderAnswerRef.current.classList.remove("right")
+            if (isShowNo) {
+                orderAnswerRef.current.classList.remove("right")
+            }
 
         }
-    }, [isRight])
+    }, [isRight, isShowNo])
 
     useEffect(() => {
         if(isWrong) {
@@ -47,10 +50,11 @@ const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isR
             orderAnswerRef.current.classList.add("wrong")
         } else {
             btnRef.current.classList.remove("wrong")
-            orderAnswerRef.current.classList.remove("wrong")
-
+            if (isShowNo) {
+                orderAnswerRef.current.classList.remove("wrong")
+            }
         }
-    }, [isWrong])
+    }, [isWrong, isShowNo])
 
     useEffect(() => {
         if(isDisabled) {
@@ -58,9 +62,11 @@ const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isR
             orderAnswerRef.current.classList.add("disabled")
         } else {
             btnRef.current.classList.remove("disabled")
-            orderAnswerRef.current.classList.remove("disabled")
+            if (isShowNo) {
+                orderAnswerRef.current.classList.remove("disabled")
+            }
         }
-    }, [isDisabled])
+    }, [isDisabled, isShowNo])
 
     return (
         <OptionAnswerContainer
@@ -69,9 +75,12 @@ const OptionAnswer = ({ no, content, isSelected = false, isDisabled = false, isR
             onMouseUp={handleMouseUpOption}
             onMouseOut={handleMouseUpOption}
             ref={btnRef}
+            defaultHeight={defaultHeight}
         >
             <OptionAnswerLayout>
-                <OrderAnswer ref={orderAnswerRef}>{no}</OrderAnswer>
+                {isShowNo && (
+                    <OrderAnswer ref={orderAnswerRef}>{no}</OrderAnswer>
+                )}
                 <AnswerContent>{content}</AnswerContent>
             </OptionAnswerLayout>
         </OptionAnswerContainer>

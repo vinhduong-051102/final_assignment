@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import ListenAndChoose from "../../container/ListenAndChoose";
 import ChooseAnswerByMeaning from "../../container/ChooseAnswerByMeaning";
 import ChoosePair from "../../container/ChoosePair";
+import DragTag from "../../container/DragTag";
 
 const AssigmentWrapper = () => {
     // dữ liệu cho header
@@ -40,7 +41,8 @@ const AssigmentWrapper = () => {
             <BodyContainer>
                 {/*<ListenAndChoose/>*/}
                 {/*<ChooseAnswerByMeaning/>*/}
-                <ChoosePair/>
+                {/*<ChoosePair/>*/}
+                <DragTag/>
             </BodyContainer>
             <Footer statusCode={2} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>

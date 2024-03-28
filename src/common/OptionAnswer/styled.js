@@ -20,13 +20,14 @@ export const OptionAnswerContainer = styled.button `
   border-radius: 12px;
   padding: 12px 16px;
   background-color: rgb(${colorSnow});
+  height: ${props => props.defaultHeight};
   &:hover {
     background-color: #f7f7f7;
   }
   &.mouseDown {
     margin-top: 2px;
     border-bottom-width: 2px;
-    height: calc(100% - 2px);
+    height: calc(${props => props.defaultHeight} - 2px);
   }
   &.selected {
     background-color: rgb(${colorIguana});
