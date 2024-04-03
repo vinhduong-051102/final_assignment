@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const AssigmentContainer = styled.div `
   display: grid;
-  transform: translateZ(0);
   grid-gap: 24px;
   grid-template-rows: min-content minmax(0, 1fr);
   overflow-x: hidden;

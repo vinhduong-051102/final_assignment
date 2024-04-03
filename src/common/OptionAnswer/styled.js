@@ -15,7 +15,6 @@ import {
 export const OptionAnswerContainer = styled.button `
   border: 2px solid rgb(${colorSwan});
   border-bottom-width: 4px;
-  transform: translateZ(0);
   cursor: pointer;
   border-radius: 12px;
   padding: 12px 16px;

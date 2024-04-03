@@ -21,7 +21,6 @@ const AssigmentWrapper = () => {
     const process = 20
     // #Số lần đúng liên tục
     const consecutiveCorrectAnswers = 0
-    //
 
     return <>
         <AssignmentContainer>

@@ -126,7 +126,11 @@ export const AnswerInputContainer = styled.div `
 export const AnswerInputRow = styled.div `
   border-bottom: 2px solid rgb(${colorSwan});
   width: 100%;
-  height: 60px;
+  height: 80px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  
 `
 
 export const AnswerTagContainer = styled.div `
@@ -151,7 +155,7 @@ export const AnswerLayoutOther = styled.div `
 `
 
 export const AnswerTextarea = styled.textarea `
-  width: 100%;
+  width: calc(100% - 36px);
   height: 170px;
   padding: 12px 16px;
   border-radius: 12px;
@@ -160,4 +164,14 @@ export const AnswerTextarea = styled.textarea `
   &::placeholder {
     color: rgb(${colorSwan});
   }
+`
+
+export const OptionAnswer = styled.div `
+  border: 2px solid rgb(${colorSwan});
+  border-bottom-width: 4px;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background-color: rgb(${colorSnow});
+  height: 30px;
 `
