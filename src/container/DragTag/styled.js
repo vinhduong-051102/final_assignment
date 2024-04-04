@@ -130,7 +130,6 @@ export const AnswerInputRow = styled.div `
   display: flex;
   gap: 4px;
   align-items: center;
-  
 `
 
 export const AnswerTagContainer = styled.div `
