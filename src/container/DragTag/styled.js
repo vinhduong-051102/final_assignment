@@ -173,4 +173,5 @@ export const OptionAnswer = styled.div `
   padding: 8px 12px;
   background-color: rgb(${colorSnow});
   height: 30px;
+
 `
