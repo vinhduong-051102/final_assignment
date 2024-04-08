@@ -143,7 +143,34 @@ const DragTag = () => {
             if (source.droppableId === DROPPABLE_FIRST_ROW_ID) {
                 setListFirstRowTag(items)
             } else if (source.droppableId === DROPPABLE_SECOND_ROW_ID) {
-                setListSecondRowTag(items)
+                const listItemFirstRow = [...listFirstRowTag]
+                // Kiểm tra sức chứa của container
+                let totalItemFirstRowWidth = 0
+                for (let i = 0; i < listItemFirstRow.length; i++) {
+                    const item = listItemFirstRow[i]
+                    const element =
+                        document.getElementById(`${item.no}`)
+                    if (element) {
+                        totalItemFirstRowWidth += element.offsetWidth
+                    }
+                }
+                const firstElementAtSecondRow =
+                    document.getElementById(`${items[0].no}`)
+                const isFull =
+                    totalItemFirstRowWidth +
+                    (
+                        firstElementAtSecondRow ?
+                            firstElementAtSecondRow.offsetWidth :
+                            0
+                    ) > containerWidth
+                if (isFull) {
+                    setListSecondRowTag(items)
+                }
+                else {
+                    setListFirstRowTag(prev => [...prev, items[0]])
+                    setListSecondRowTag(items.slice(1))
+                }
+
             } else {
                 setItems(items)
             }
@@ -208,6 +235,27 @@ const DragTag = () => {
                     destination,
                     isFull,
                 )
+            }
+            else if (
+                source.droppableId === DROPPABLE_SECOND_ROW_ID &&
+                destination.droppableId === DROPPABLE_FIRST_ROW_ID
+            ) {
+                secondToFirst(
+                    source,
+                    destination,
+                )
+            }
+            else if (
+                source.droppableId === DROPPABLE_SECOND_ROW_ID &&
+                destination.droppableId === DROPPABLE_ANSWER_ID
+            ) {
+                secondToAnswer(source, destination)
+            }
+            else if (
+                source.droppableId === DROPPABLE_FIRST_ROW_ID &&
+                destination.droppableId === DROPPABLE_ANSWER_ID
+            ) {
+                firstToAnswer(source, destination)
             }
         }
 
@@ -302,12 +350,71 @@ const DragTag = () => {
         }
     }
 
-    const firstToAnswer = () => {
-
+    const firstToAnswer = (
+        source,
+        destination
+    ) => {
+        const result = move(
+            listFirstRowTag,
+            items,
+            source.index,
+            destination.index,
+            source.droppableId,
+            destination.droppableId
+        )
+        const listFirstRow = result[DROPPABLE_FIRST_ROW_ID]
+        let totalItemFirstRowWidth = 0
+        for (let i = 0; i < listFirstRow.length; i++) {
+            const item = listFirstRow[i]
+            const element =
+                document.getElementById(`${item.no}`)
+            if (element) {
+                totalItemFirstRowWidth += element.offsetWidth
+            }
+        }
+        const storeIndex = []
+        for (let i = 0; i < listSecondRowTag.length; i++) {
+            const item = listSecondRowTag[i]
+            const element =
+                document.getElementById(`${item.no}`)
+            if (element) {
+                totalItemFirstRowWidth += element.offsetWidth
+                if (totalItemFirstRowWidth < containerWidth) {
+                    storeIndex.push(i)
+                }
+                else {
+                    break
+                }
+            }
+        }
+        setListFirstRowTag(
+            [
+                ...listFirstRow,
+                ...storeIndex
+                    .map(index => listSecondRowTag[index])
+            ]
+        )
+        setItems(result[DROPPABLE_ANSWER_ID])
+        setListSecondRowTag(
+            listSecondRowTag
+                .slice(storeIndex[storeIndex.length - 1] + 1)
+        )
     }
 
-    const secondToAnswer = () => {
-
+    const secondToAnswer = (
+        source,
+        destination,
+    ) => {
+        const result = move(
+            listSecondRowTag,
+            items,
+            source.index,
+            destination.index,
+            source.droppableId,
+            destination.droppableId
+        )
+        setItems(result[DROPPABLE_ANSWER_ID])
+        setListSecondRowTag(result[DROPPABLE_SECOND_ROW_ID])
     }
 
     const firstToSecond = (
@@ -379,9 +486,38 @@ const DragTag = () => {
     const secondToFirst = (
         source,
         destination,
-        isFull,
-    ) => {
 
+    ) => {
+        const result = move(
+            listSecondRowTag,
+            listFirstRowTag,
+            source.index,
+            destination.index,
+            source.droppableId,
+            destination.droppableId
+        )
+        const arr1 = result[DROPPABLE_FIRST_ROW_ID]
+        let totalItemFirstRowWidth = 0
+        let stopIndex = arr1.length - 1
+        for (let i = 0; i < arr1.length; i++) {
+            const item = arr1[i]
+            const element =
+                document.getElementById(`${item.no}`)
+            if (element) {
+                totalItemFirstRowWidth += element.offsetWidth
+                if (totalItemFirstRowWidth > containerWidth) {
+                    stopIndex = i
+                    break
+                }
+            }
+        }
+        setListFirstRowTag(arr1.slice(0, stopIndex))
+        setListSecondRowTag(
+            [
+                ...arr1.slice(stopIndex),
+                ...result[DROPPABLE_SECOND_ROW_ID]
+            ]
+        )
     }
 
     useEffect(() => {
