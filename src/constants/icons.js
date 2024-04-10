@@ -1,3 +1,5 @@
 export const tickIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/bed2a542bc7eddc78e75fbe85260b89e.svg'
 export const xIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/4af31393cf9dee6fd35c07fc7155d404.svg'
 export const wrongIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/9a4bf74a74e801ca35402f2c2837e24c.svg'
+export const micIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/3ba488c6adbc110069936876062c593a.svg'
+export const rightIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/6810ca815599b4b512398dcd2109262a.svg'

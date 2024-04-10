@@ -77,10 +77,13 @@ const OptionAnswer = ({ defaultHeight = '100%', no, content, isShowNo= true, isS
             ref={btnRef}
             defaultHeight={defaultHeight}
         >
-            <OptionAnswerLayout>
-                {isShowNo && (
-                    <OrderAnswer ref={orderAnswerRef}>{no}</OrderAnswer>
-                )}
+            <OptionAnswerLayout isShowNo={isShowNo}>
+                <OrderAnswer
+                    isShowNo={isShowNo}
+                    ref={orderAnswerRef}
+                >
+                    {no}
+                </OrderAnswer>
                 <AnswerContent>{content}</AnswerContent>
             </OptionAnswerLayout>
         </OptionAnswerContainer>

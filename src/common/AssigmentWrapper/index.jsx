@@ -1,5 +1,6 @@
 import {
-    AssignmentContainer, BodyContainer,
+    AssignmentContainer,
+    BodyContainer,
     HeaderCancelBtn,
     HeaderContainer,
     HeaderLayout,
@@ -14,11 +15,12 @@ import ListenAndChoose from "../../container/ListenAndChoose";
 import ChooseAnswerByMeaning from "../../container/ChooseAnswerByMeaning";
 import ChoosePair from "../../container/ChoosePair";
 import DragTag from "../../container/DragTag";
+import SpeakAssigment from "../../container/SpeakAssigment";
 
 const AssigmentWrapper = () => {
     // dữ liệu cho header
     // #Tiến độ
-    const process = 20
+    const process = 60
     // #Số lần đúng liên tục
     const consecutiveCorrectAnswers = 0
 
@@ -41,7 +43,8 @@ const AssigmentWrapper = () => {
                 {/*<ListenAndChoose/>*/}
                 {/*<ChooseAnswerByMeaning/>*/}
                 {/*<ChoosePair/>*/}
-                <DragTag/>
+                {/*<DragTag/>*/}
+                <SpeakAssigment/>
             </BodyContainer>
             <Footer statusCode={2} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>

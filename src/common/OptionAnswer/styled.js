@@ -58,7 +58,7 @@ export const OptionAnswerContainer = styled.button `
 
 export const OptionAnswerLayout = styled.div `
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: ${props => props.isShowNo ? 'min-content 1fr' : '1fr'};
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
     width: 100%;
@@ -74,7 +74,7 @@ export const OrderAnswer = styled.div `
   font-size: 15px;
   font-weight: 700;
   height: 30px;
-  display: flex;
+  display: ${props => props.isShowNo ? 'flex' : 'none'};
   justify-content: center;
   width: 30px;
   @media (max-width: 767px) {

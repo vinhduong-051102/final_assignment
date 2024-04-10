@@ -1,32 +1,30 @@
 import styled from "styled-components";
-import {colorEel, colorSnow, colorSwan} from "../../constants/colors";
+import {colorEel, colorMacaw, colorSnow, colorSwan} from "../../constants/colors";
 
 export const AssigmentContentLayout = styled.div `
   display: grid;
   text-align: initial;
-  align-content: start;
-  grid-template-rows: min-content min-content;
+  grid-template-rows: min-content 1fr;
   @media (min-width: 768px) {
-    grid-template-rows: min-content 1fr;
+    align-content: center;
+    grid-template-rows: none;
   }
 `
 
-export const AssigmentMeaningContainer = styled.div `
+export const AssigmentQuestionContainer = styled.div `
   line-height: 1.4;
   padding-left: 16px;
-  margin-bottom: -4px;
-  margin-top: -16px;
   @media (min-width: 768px) {
     margin-top: -24px;
   }
 `
 
-export const AssigmentMeaningLayout = styled.div `
+export const AssigmentQuestionLayout = styled.div `
   align-items: center;
   display: flex;
 `
 
-export const AssigmentMeaningImgContainer = styled.div `
+export const AssigmentQuestionImgContainer = styled.div `
   align-self: flex-end;
   aspect-ratio: 118 / 175;
   display: flex;
@@ -36,7 +34,7 @@ export const AssigmentMeaningImgContainer = styled.div `
   width: 30%;
 `
 
-export const AssigmentMeaningTextContainer = styled.div `
+export const AssigmentQuestionTextContainer = styled.div `
   align-items: end;
   display: inline-flex;
   flex-direction: column;
@@ -54,13 +52,33 @@ export const AssigmentMeaningTextContainer = styled.div `
   text-transform: none;
 `
 
-export const MeaningTextSvgContainer = styled.div `
+export const QuestionTextSvgContainer = styled.div `
   position: absolute;
   top: Min(Max(calc(38.5px - 18px), 12px), calc(100% - 32px));
   left: -18px;
 `
 
-export const MeaningText = styled.div `
+export const QuestionSpeakerIconContainer = styled.div `
+  align-items: center;
+  display: inline-flex;
+  margin-inline-end: 8px;
+  vertical-align: top;
+`
+
+export const QuestionSpeakerBtn = styled.button `
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  line-height: 0;
+  padding: 0;
+`
+
+export const SpeakerImg = styled.img `
+  height: 22px;
+  width: 29px;
+`
+
+export const QuestionText = styled.div `
   max-width: 350px;
   word-wrap: break-word;
   max-height: 160px;
@@ -81,11 +99,18 @@ export const MeaningText = styled.div `
   }
 `
 
-export const AnswerContentLayout = styled.div `
-  align-self: start;
-  grid-template-columns: 1fr;
-  grid-gap: 8px;
-  display: grid;
+export const BtnCheckContainer = styled.div `
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  color: rgb(${colorMacaw});
+  height: 40px;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
 `
 
-
+export const Icon = styled.img `
+  height: 25px;
+`
