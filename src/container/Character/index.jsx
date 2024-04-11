@@ -15,6 +15,7 @@ import {
     Word
 } from "./styled";
 import OptionAnswer from "../../common/OptionAnswer";
+import axios from "axios"
 
 const Character = () => {
     const listVowel = [
@@ -271,7 +272,25 @@ const Character = () => {
             
         }
     ]
-    
+
+    const handleClick = url => {
+        axios({
+            url: url,
+            method: 'GET',
+            responseType: 'blob', // Chỉ định kiểu dữ liệu trả về là blob
+        })
+            .then(response => {
+                // Tạo một đường dẫn (URL) từ blob
+                const blobUrl = URL.createObjectURL(response.data);
+                // Tạo một thẻ audio để phát file MP3
+                const audio = new Audio(blobUrl);
+                // Phát file MP3
+                audio.play();
+            })
+            .catch(error => {
+                console.error('There was a problem with the Axios request:', error);
+            });
+    }
     
     return (
         <CharacterContainer>
@@ -291,6 +310,7 @@ const Character = () => {
                             {listVowel.map((vowel, index) => {
                                 return (
                                     <OptionAnswer
+                                        onClick={() => handleClick(vowel.ttsUrl)}
                                         key={index}
                                         no={1}
                                         isShowNo={false}
@@ -314,6 +334,7 @@ const Character = () => {
                             {listConsonant.map((vowel, index) => {
                                 return (
                                     <OptionAnswer
+                                        onClick={() => handleClick(vowel.ttsUrl)}
                                         key={index}
                                         no={1}
                                         isShowNo={false}
