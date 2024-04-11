@@ -3,3 +3,9 @@ export const xIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/4af31393cf9de
 export const wrongIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/9a4bf74a74e801ca35402f2c2837e24c.svg'
 export const micIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/3ba488c6adbc110069936876062c593a.svg'
 export const rightIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/6810ca815599b4b512398dcd2109262a.svg'
+export const homeIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/784035717e2ff1d448c0f6cc4efc89fb.svg'
+export const vowIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/3b4928101472fce4e9edac920c1b3817.svg'
+export const addIcon =  'https://d35aaqx5ub95lt.cloudfront.net/vendor/449465bd011a98bf7188792196ae499d.svg'
+export const logoIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/0cecd302cf0bcd0f73d51768feff75fe.svg'
+export const logoTextIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/70a4be81077a8037698067f583816ff9.svg'
+

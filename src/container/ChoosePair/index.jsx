@@ -202,7 +202,7 @@ const ChoosePair = () => {
 
   useEffect(() => {
     if (vocabularySelected && meaningSelected) {
-      handleWrong();
+      handleRight();
       // Gọi API check kết quả
       // Dù đúng hay sai đều setState cho vocabularySelected và meaningSelected thành null
     }

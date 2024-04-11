@@ -42,9 +42,9 @@ const AssigmentWrapper = () => {
             <BodyContainer>
                 {/*<ListenAndChoose/>*/}
                 {/*<ChooseAnswerByMeaning/>*/}
-                {/*<ChoosePair/>*/}
+                <ChoosePair/>
                 {/*<DragTag/>*/}
-                <SpeakAssigment/>
+                {/*<SpeakAssigment/>*/}
             </BodyContainer>
             <Footer statusCode={2} answer={"answer"} comment={'comment'}/>
         </AssignmentContainer>
