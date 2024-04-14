@@ -2,6 +2,8 @@ import {Navigate, Route, Routes} from "react-router";
 import Menu from "../src/common/Menu";
 import AssigmentWrapper from "./common/AssigmentWrapper";
 import Character from "./container/Character";
+import CreateLesson from "./container/CreateLesson";
+import Chat from "./container/Chat";
 
 function App() {
   return (
@@ -16,7 +18,22 @@ function App() {
                 </Menu>
             }
         />
-        <Route path={"/add"} element={<Menu><>add</></Menu>} />
+        <Route
+            path={"/add"}
+            element={
+                <Menu>
+                    <CreateLesson/>
+                </Menu>
+            }
+        />
+        <Route
+            path={"/chat"}
+            element={
+                <Menu>
+                    <Chat/>
+                </Menu>
+            }
+        />
     </Routes>
     //   <AssigmentWrapper/>
   );

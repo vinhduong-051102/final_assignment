@@ -8,4 +8,5 @@ export const vowIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/3b492810147
 export const addIcon =  'https://d35aaqx5ub95lt.cloudfront.net/vendor/449465bd011a98bf7188792196ae499d.svg'
 export const logoIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/0cecd302cf0bcd0f73d51768feff75fe.svg'
 export const logoTextIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/70a4be81077a8037698067f583816ff9.svg'
-
+export const assistantIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/leagues/2439bac00452e99ba7bf6a7ed0b04196.svg'
+export const userAvatar = 'https://simg-ssl.duolingo.com/avatars/550475707/1vTn_0vvvZ/medium'

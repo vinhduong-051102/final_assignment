@@ -10,7 +10,7 @@ import {
   MenuItemIcon,
   MenuItemText,
 } from "./styled";
-import {logoIcon, logoTextIcon, homeIcon, vowIcon, addIcon} from "../../constants/icons";
+import {logoIcon, logoTextIcon, homeIcon, vowIcon, addIcon, assistantIcon} from "../../constants/icons";
 import { Link } from "react-router-dom";
 
 const Menu = ({ children }) => {
@@ -32,11 +32,14 @@ const Menu = ({ children }) => {
             <MenuItemIcon src={vowIcon}/>
             <MenuItemText>phát âm</MenuItemText>
           </MenuItemLayout>
+          <MenuItemLayout to="/chat">
+            <MenuItemIcon src={assistantIcon}/>
+            <MenuItemText>Trợ lý của bạn</MenuItemText>
+          </MenuItemLayout>
           <MenuItemLayout to="/add">
             <MenuItemIcon src={addIcon}/>
             <MenuItemText>Thêm mới</MenuItemText>
           </MenuItemLayout>
-
         </ListMenuItemLayout>
       </SidebarContainer>
       <BodyContainer>{children}</BodyContainer>
