@@ -14,6 +14,9 @@ export const LoginContainer = styled.div `
 
 export const LoginLayout = styled.div `
   width: 375px;
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `
 
 export const Title = styled.div `

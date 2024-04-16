@@ -14,6 +14,9 @@ export const RegisterContainer = styled.div `
 
 export const RegisterLayout = styled.div `
   width: 375px;
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `
 
 export const Title = styled.div `
