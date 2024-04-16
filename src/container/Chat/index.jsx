@@ -26,48 +26,48 @@ const Chat = () => {
     return (
         <ChatContainer>
             <ChatContentContainer>
-                <IntroContainer>
-                    <IntroLayout>
-                        <img src={logoIcon} width={70}/>
-                        <IntroText>Tôi có thể giúp gì cho bạn ?</IntroText>
-                    </IntroLayout>
-                </IntroContainer>
-                {/*<ChatContentLayout>*/}
-                {/*    {*/}
-                {/*        arr.map((item, index) => {*/}
-                {/*            if (index % 2 === 0) {*/}
-                {/*                return (*/}
-                {/*                    <ChatRowContainer key={index}>*/}
-                {/*                        <ChatRowLayout>*/}
-                {/*                            <UserNameChat>*/}
-                {/*                                <img src={userAvatar}/>*/}
-                {/*                                <span>Bạn</span>*/}
-                {/*                            </UserNameChat>*/}
-                {/*                            <ContentChat>*/}
-                {/*                                Thì hiện tại tiếp diễn là gì ?*/}
-                {/*                            </ContentChat>*/}
-                {/*                        </ChatRowLayout>*/}
-                {/*                    </ChatRowContainer>*/}
-                {/*                )*/}
-                {/*            }*/}
-                {/*            else {*/}
-                {/*                return (*/}
-                {/*                    <ChatRowContainer key={index}>*/}
-                {/*                        <ChatRowLayout>*/}
-                {/*                            <UserNameChat>*/}
-                {/*                                <img src={assistantIcon}/>*/}
-                {/*                                <span>Trợ lý</span>*/}
-                {/*                            </UserNameChat>*/}
-                {/*                            <ContentChat>*/}
-                {/*                                Thì hiện tại tiếp diễn là gì ?*/}
-                {/*                            </ContentChat>*/}
-                {/*                        </ChatRowLayout>*/}
-                {/*                    </ChatRowContainer>*/}
-                {/*                )*/}
-                {/*            }*/}
-                {/*        })*/}
-                {/*    }*/}
-                {/*</ChatContentLayout>*/}
+                {/*<IntroContainer>*/}
+                {/*    <IntroLayout>*/}
+                {/*        <img src={logoIcon} width={70}/>*/}
+                {/*        <IntroText>Tôi có thể giúp gì cho bạn ?</IntroText>*/}
+                {/*    </IntroLayout>*/}
+                {/*</IntroContainer>*/}
+                <ChatContentLayout>
+                    {
+                        arr.map((item, index) => {
+                            if (index % 2 === 0) {
+                                return (
+                                    <ChatRowContainer key={index}>
+                                        <ChatRowLayout>
+                                            <UserNameChat>
+                                                <img src={userAvatar}/>
+                                                <span>Bạn</span>
+                                            </UserNameChat>
+                                            <ContentChat>
+                                                Thì hiện tại tiếp diễn là gì ?
+                                            </ContentChat>
+                                        </ChatRowLayout>
+                                    </ChatRowContainer>
+                                )
+                            }
+                            else {
+                                return (
+                                    <ChatRowContainer key={index}>
+                                        <ChatRowLayout>
+                                            <UserNameChat>
+                                                <img src={assistantIcon}/>
+                                                <span>Trợ lý</span>
+                                            </UserNameChat>
+                                            <ContentChat>
+                                                Thì hiện tại tiếp diễn là gì ?
+                                            </ContentChat>
+                                        </ChatRowLayout>
+                                    </ChatRowContainer>
+                                )
+                            }
+                        })
+                    }
+                </ChatContentLayout>
             </ChatContentContainer>
             <ChatInputContainer>
                 <ChatInputLayout>
