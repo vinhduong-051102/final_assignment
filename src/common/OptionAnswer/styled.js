@@ -13,15 +13,15 @@ import {
 } from "../../constants/colors";
 
 export const OptionAnswerContainer = styled.button `
-  border: 2px solid rgb(${colorSwan});
+  border: 2px solid rgb(${props => props.defaultBorderColor});
   border-bottom-width: 4px;
   cursor: pointer;
   border-radius: 12px;
   padding: 12px 16px;
-  background-color: rgb(${colorSnow});
+  background-color: rgb(${props => props.defaultBgc});
   height: ${props => props.defaultHeight};
   &:hover {
-    background-color: #f7f7f7;
+    background-color: rgb(${props => props.defaultHoverBgc});
   }
   &.mouseDown {
     margin-top: 2px;

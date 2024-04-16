@@ -4,6 +4,8 @@ import AssigmentWrapper from "./common/AssigmentWrapper";
 import Character from "./container/Character";
 import CreateLesson from "./container/CreateLesson";
 import Chat from "./container/Chat";
+import Login from "./container/Login";
+import Register from "./container/Register";
 
 function App() {
   return (
@@ -33,6 +35,14 @@ function App() {
                     <Chat/>
                 </Menu>
             }
+        />
+        <Route
+            path={"/signin"}
+            element={<Login/>}
+        />
+        <Route
+            path={"/signup"}
+            element={<Register/>}
         />
     </Routes>
     //   <AssigmentWrapper/>

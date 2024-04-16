@@ -5,8 +5,24 @@ import {
 } from "./styled";
 
 import { useEffect, useRef } from "react";
+import {colorPolar, colorSnow, colorSwan} from "../../constants/colors";
 
-const OptionAnswer = ({ defaultHeight = '100%', no, content, isShowNo= true, isSelected = false, isDisabled = false, isRight = false, isWrong = false, onClick = () => {} }) => {
+const OptionAnswer = (
+    {
+        defaultHoverBgc= `${colorPolar}`,
+        defaultBorderColor=`${colorSwan}`,
+        defaultBgc = `${colorSnow}`,
+        defaultHeight = '100%',
+        no,
+        content,
+        isShowNo= true,
+        isSelected = false,
+        isDisabled = false,
+        isRight = false,
+        isWrong = false,
+        onClick = () => {}
+    }
+) => {
     const btnRef = useRef(null)
     const orderAnswerRef = useRef(null)
     const handleMouseDownOption = () => {
@@ -76,6 +92,9 @@ const OptionAnswer = ({ defaultHeight = '100%', no, content, isShowNo= true, isS
             onMouseOut={handleMouseUpOption}
             ref={btnRef}
             defaultHeight={defaultHeight}
+            defaultBgc={defaultBgc}
+            defaultBorderColor={defaultBorderColor}
+            defaultHoverBgc={defaultHoverBgc}
         >
             <OptionAnswerLayout isShowNo={isShowNo}>
                 <OrderAnswer

@@ -10,3 +10,5 @@ export const logoIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/0cecd302cf
 export const logoTextIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/70a4be81077a8037698067f583816ff9.svg'
 export const assistantIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/leagues/2439bac00452e99ba7bf6a7ed0b04196.svg'
 export const userAvatar = 'https://simg-ssl.duolingo.com/avatars/550475707/1vTn_0vvvZ/medium'
+export const unShowPasswordIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/39eca93012fa2f5fb6513b775a2eded8.svg'
+export const showPasswordIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/4c908333e9ced51ed0c62c41393fe9fb.svg'

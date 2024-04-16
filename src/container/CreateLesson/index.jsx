@@ -65,7 +65,6 @@ const CreateLesson = () => {
                                 </VocabularyContainer>
                             )
                         })}
-
                     </ListVocabularyLayout>
                 </ListVocabularyContainer>
                 <OptionAnswer
