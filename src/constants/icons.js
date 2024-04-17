@@ -12,3 +12,4 @@ export const assistantIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/leagu
 export const userAvatar = 'https://simg-ssl.duolingo.com/avatars/550475707/1vTn_0vvvZ/medium'
 export const unShowPasswordIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/39eca93012fa2f5fb6513b775a2eded8.svg'
 export const showPasswordIcon = 'https://d35aaqx5ub95lt.cloudfront.net/vendor/4c908333e9ced51ed0c62c41393fe9fb.svg'
+export const cryIcon = 'https://d35aaqx5ub95lt.cloudfront.net/images/ed9f592a37a6ce248be0beec9c13a0e1.svg'

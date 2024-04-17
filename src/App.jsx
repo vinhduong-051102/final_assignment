@@ -6,6 +6,7 @@ import CreateLesson from "./container/CreateLesson";
 import Chat from "./container/Chat";
 import Login from "./container/Login";
 import Register from "./container/Register";
+import ErrorPage from "./container/ErrorPage";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
         <Route
             path={"/signup"}
             element={<Register/>}
+        />
+        <Route
+            path={"*"}
+            element={<ErrorPage/>}
         />
     </Routes>
     //   <AssigmentWrapper/>
