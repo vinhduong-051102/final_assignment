@@ -2,13 +2,14 @@ import { takeLatest, put, call, debounce } from 'redux-saga/effects';
 import * as constants from './constants';
 import * as actions from './actions';
 import {axiosPost} from "../../utils/request";
+import axios from "axios";
 
 function* chat(action) {
     const path = "/chat"
     yield put(actions.actionStart())
     try {
         const res = yield call(
-            axiosPost,
+            axios.post,
             path,
             action.payload
         );
