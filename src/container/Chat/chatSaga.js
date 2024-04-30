@@ -5,16 +5,40 @@ import {axiosPost} from "../../utils/request";
 import axios from "axios";
 
 function* chat(action) {
-    const path = "/chat"
+    const path = "http://192.168.0.110:6868/chat"
     yield put(actions.actionStart())
     try {
         const res = yield call(
             axios.post,
             path,
-            action.payload
+            action.payload,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
         );
         if (res.status === 200) {
-            yield put(actions.chatSuccess(res.data));
+            const [first, ...rest] = res.data
+            yield put(actions.chatSuccess(rest));
+            yield put(actions.actionEnd());
+        }
+    } catch (error) {
+        yield put(actions.actionEnd());
+    }
+}
+
+function* getListHistory() {
+    const path = "http://192.168.0.110:6868/get_history"
+    yield put(actions.actionStart())
+    try {
+        const res = yield call(
+            axios.get,
+            path,
+        );
+        if (res.status === 200) {
+            const [first, ...rest] = res.data
+            yield put(actions.getListHistorySuccess(rest));
             yield put(actions.actionEnd());
         }
     } catch (error) {
@@ -24,5 +48,6 @@ function* chat(action) {
 
 export default function* () {
     yield takeLatest(constants.CHAT_ACTION, chat);
+    yield takeLatest(constants.GET_LIST_HISTORY_ACTION, getListHistory);
 
 }

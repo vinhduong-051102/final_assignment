@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const chatSlice = createSlice({
-    name: 'course',
+    name: 'chat',
     initialState,
     reducers: {
         actionEnd: (state) => {
@@ -16,6 +16,9 @@ const chatSlice = createSlice({
             state.isLoading = true;
         },
         chatSuccess: (state, action) => {
+            state.history = action.payload
+        },
+        getListHistorySuccess: (state, action) => {
             state.history = action.payload
         }
     },

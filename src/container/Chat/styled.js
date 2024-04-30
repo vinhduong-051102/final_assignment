@@ -51,6 +51,7 @@ export const ChatContentContainer = styled.div `
   max-height: calc(100% - 80px);
   height: 100%;
   overflow-y: auto;
+  scroll-behavior: smooth;
 `
 
 export const ChatContentLayout = styled.div `
@@ -80,9 +81,13 @@ export const UserNameChat = styled.div `
   }
 `
 
-export const ContentChat = styled.div `
+export const ContentChat = styled.pre `
   font-weight: 600;
   font-size: 16px;
+  max-height: 100%;
+  overflow: auto; /* Display scrollbars when content overflows */
+  white-space: pre-wrap; /* Wrap long lines of text */
+  padding-right: 10px;
 `
 
 export const IntroContainer = styled.div `
