@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorSwan} from "../../constants/colors";
+import {colorHare, colorSwan} from "../../constants/colors";
 
 export const CreateLessonContainer = styled.div `
   box-sizing: border-box;
@@ -130,6 +130,24 @@ export const VocabularyBody = styled.div `
   @media (max-width: 425px) {
     grid-template-columns: 1fr;
 
+  }
+`
+
+export const SuggestListContainer = styled.div `
+  position: absolute;
+  background-color: rgb(${colorSwan});  
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+`
+
+export const SuggestRow = styled.div `
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  &:hover {
+    color: rgb(${colorHare});
   }
 `
 
