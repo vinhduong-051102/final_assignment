@@ -12,21 +12,48 @@ import {
 import OptionAnswer from "../../common/OptionAnswer";
 import {Link} from "react-router-dom";
 import {showPasswordIcon, unShowPasswordIcon} from "../../constants/icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import * as actions from "./actions"
+import * as selectors from "./loginSlice"
 
 const Login = () => {
-
+    const dispatch = useDispatch()
+    const isLoading = useSelector(selectors.selectIsLoading)
+    const message = useSelector(selectors.selectMessage)
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
+    const handleSignin = () => {
+        dispatch(actions.signin({email, password}))
+    }
+
+    useEffect(() => {
+        if (message) {
+            alert(message)
+
+            dispatch(actions.resetRedux())
+        }
+    }, [dispatch, message])
 
     return (
         <LoginContainer>
             <LoginLayout>
                 <Title>Đăng nhập</Title>
                 <InputLayout>
-                    <Input placeholder="Nhập email"/>
+                    <Input
+                        placeholder="Nhập email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
                     <div style={{position: "relative"}}>
-                        <Input placeholder="Nhập mật khẩu" type={isShowPassword ? "text" : "password"} />
+                        <Input
+                            placeholder="Nhập mật khẩu"
+                            type={isShowPassword ? "text" : "password"}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
                         <PasswordIconContainer
                             onClick={() => setIsShowPassword(prev => !prev)}
                         >
@@ -56,6 +83,7 @@ const Login = () => {
                         defaultBgc='28, 176, 246'
                         defaultBorderColor='24, 153, 214'
                         defaultHoverBgc={'29,190,253'}
+                        onClick={handleSignin}
                     />
                     <TextRedirectContainer>
                         <span>Bạn chưa có tài khoản? </span>
