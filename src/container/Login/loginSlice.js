@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isLoading: false,
-    message: ""
+    message: "",
+    isLoginSuccess: false
 };
 
 const loginSlice = createSlice({
@@ -17,9 +18,11 @@ const loginSlice = createSlice({
         },
         resetRedux: (state) => {
             state.isLoading = false
+            state.message = ""
         },
         signinSuccess: (state, action) => {
             state.message = action.payload
+            state.isLoginSuccess = true
         }
     },
 });
@@ -29,5 +32,8 @@ export const selectIsLoading = (state) =>
 
 export const selectMessage = (state) =>
     state.loginSlice.message;
+
+export const selectIsLoginSuccess = (state) =>
+    state.loginSlice.isLoginSuccess;
 
 export default loginSlice.reducer;

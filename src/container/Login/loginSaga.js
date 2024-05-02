@@ -28,9 +28,9 @@ function* signin(action) {
             }
         );
         if (res.status === 200) {
-            console.log(res.data)
             setCookie("userName", res.data.userName, 1)
             setCookie("id", res.data.id, 1)
+            yield put(actions.signinSuccess(res.data.message))
             yield put(actions.actionEnd());
         }
     } catch (error) {

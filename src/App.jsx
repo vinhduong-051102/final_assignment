@@ -7,34 +7,48 @@ import Chat from "./container/Chat";
 import Login from "./container/Login";
 import Register from "./container/Register";
 import ErrorPage from "./container/ErrorPage";
+import LayoutWithLogin from "./layout/LayoutWithLogin";
 
 function App() {
   return (
     <Routes>
         <Route path={"/"} element={<Navigate to="/learn"/>} />
-        <Route path={"/learn"} element={<Menu><>learn</></Menu>} />
+        <Route
+            path={"/learn"}
+            element={
+                <LayoutWithLogin>
+                    <Menu><>learn</></Menu>
+                </LayoutWithLogin>
+            }
+        />
         <Route
             path={"/characters"}
             element={
-                <Menu>
-                    <Character/>
-                </Menu>
+                <LayoutWithLogin>
+                    <Menu>
+                        <Character/>
+                    </Menu>
+                </LayoutWithLogin>
             }
         />
         <Route
             path={"/add"}
             element={
-                <Menu>
-                    <CreateLesson/>
-                </Menu>
+                <LayoutWithLogin>
+                    <Menu>
+                        <CreateLesson/>
+                    </Menu>
+                </LayoutWithLogin>
             }
         />
         <Route
             path={"/chat"}
             element={
-                <Menu>
-                    <Chat/>
-                </Menu>
+                <LayoutWithLogin>
+                    <Menu>
+                        <Chat/>
+                    </Menu>
+                </LayoutWithLogin>
             }
         />
         <Route

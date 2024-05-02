@@ -16,9 +16,12 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as actions from "./actions"
 import * as selectors from "./loginSlice"
+import {useNavigate} from "react-router";
 
 const Login = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const isLoginSuccess = useSelector(selectors.selectIsLoginSuccess)
     const isLoading = useSelector(selectors.selectIsLoading)
     const message = useSelector(selectors.selectMessage)
     const [isShowPassword, setIsShowPassword] = useState(false)
@@ -32,10 +35,12 @@ const Login = () => {
     useEffect(() => {
         if (message) {
             alert(message)
-
             dispatch(actions.resetRedux())
         }
-    }, [dispatch, message])
+        if (isLoginSuccess) {
+            navigate("/")
+        }
+    }, [dispatch, message, isLoginSuccess])
 
     return (
         <LoginContainer>
