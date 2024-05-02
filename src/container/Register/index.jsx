@@ -12,21 +12,51 @@ import {
 import OptionAnswer from "../../common/OptionAnswer";
 import {Link} from "react-router-dom";
 import { unShowPasswordIcon, showPasswordIcon } from "../../constants/icons"
-import { useState } from "react";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import * as selectors from "./registerSlice"
+import * as actions from "./actions"
 
 const Register = () => {
+    const dispatch = useDispatch()
+
+    const isLoading = useSelector(selectors.selectIsLoading)
+
+    const message = useSelector(selectors.selectMessage)
 
     const [isShowPassword, setIsShowPassword] = useState(false)
+
+    const [userName, setUserName] = useState("");
+
+    const [email, setEmail] = useState("")
+
+    const [password, setPassword] = useState("");
+
+    const handleSignup = () => {
+        dispatch(actions.signup({userName, email, password}))
+    }
+
+    useEffect(() => {
+        if (message) {
+            alert(message)
+            dispatch(actions.resetRedux())
+        }
+    }, [message, dispatch])
 
     return (
         <RegisterContainer>
             <RegisterLayout>
                 <Title>Tạo hồ sơ</Title>
                 <InputLayout>
-                    <Input placeholder="Nhập tên"/>
-                    <Input placeholder="Nhập email"/>
+                    <Input placeholder="Nhập tên" value={userName} onChange={e => setUserName(e.target.value)}/>
+                    <Input placeholder="Nhập email" value={email} onChange={e => setEmail(e.target.value)}/>
                     <div style={{position: "relative"}}>
-                        <Input placeholder="Nhập mật khẩu" type={isShowPassword ? "text" : "password"} />
+                        <Input
+                            placeholder="Nhập mật khẩu"
+                            type={isShowPassword ? "text" : "password"}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
                         <PasswordIconContainer
                             onClick={() => setIsShowPassword(prev => !prev)}
                         >
@@ -40,6 +70,7 @@ const Register = () => {
                         </PasswordIconContainer>
                     </div>
                     <OptionAnswer
+                        onClick={handleSignup}
                         no={1} isShowNo={false}
                         content={
                             <span
