@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorEel, colorMacaw, colorPolar, colorSwan} from "../../constants/colors";
+import {colorEel, colorFireAnt, colorFireArtHover, colorMacaw, colorPolar, colorSwan} from "../../constants/colors";
 
 export const RegisterContainer = styled.div `
   width: 100vw;
@@ -33,25 +33,25 @@ export const InputLayout = styled.div `
   position: relative;
   text-align: start;
   width: 100%;
-  gap: 20px;
+  gap: 30px;
 `
 
 export const Input = styled.input `
   background: rgb(${colorPolar});
-  border: 2px solid rgb(${colorSwan});
+  border: 2px solid ${props => props.isError ? `rgb(${colorFireArtHover})` : `rgb(${colorSwan})`};
   border-radius: 12px;
   display: flex;
   overflow: hidden;
   padding: 12px 16px;
   padding-right: 40px;
   font-weight: 500;
-  color: rgb(${colorEel});
+  color: ${props => props.isError ? `rgb(${colorFireAnt})` : `rgb(${colorEel})`};
   box-sizing: border-box;
   font-size: 18px;
   width: 100%;
   &:focus-visible {
     outline: none;
-    border-color: rgb(${colorMacaw});
+    border-color: ${props => props.isError ? `rgb(${colorFireArtHover})` : `rgb(${colorSwan})`};
   }
 `
 
