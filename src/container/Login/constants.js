@@ -9,3 +9,5 @@ export const SIGN_IN_ACTION = `${KEY}/signin`;
 export const SIGN_IN_SUCCESS = `${KEY}/signinSuccess`;
 
 export const RESET_REDUX = `${KEY}/resetRedux`;
+
+export const SIGN_IN_FAILURE = `${KEY}/signinFailure`;

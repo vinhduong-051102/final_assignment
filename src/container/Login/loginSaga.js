@@ -30,7 +30,12 @@ function* signin(action) {
         if (res.status === 200) {
             setCookie("userName", res.data.userName, 1)
             setCookie("id", res.data.id, 1)
-            yield put(actions.signinSuccess(res.data.message))
+            if (res.data.userName && res.data.id) {
+                yield put(actions.signinSuccess(res.data.message))
+            }
+            else {
+                yield put(actions.signinFailure(res.data.message))
+            }
             yield put(actions.actionEnd());
         }
     } catch (error) {

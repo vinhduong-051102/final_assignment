@@ -23,6 +23,10 @@ const loginSlice = createSlice({
         signinSuccess: (state, action) => {
             state.message = action.payload
             state.isLoginSuccess = true
+        },
+        signinFailure: (state, action) => {
+            state.message = action.payload
+            state.isLoginSuccess = false
         }
     },
 });

@@ -18,9 +18,12 @@ import * as selectors from "./registerSlice"
 import * as actions from "./actions"
 import {object, string} from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {useForm, FormProvider, Controller, get} from "react-hook-form";
+import {useForm, FormProvider, Controller} from "react-hook-form";
+import {useNavigate} from "react-router";
 
 const Register = () => {
+    const navigate = useNavigate()
+
     const dispatch = useDispatch()
 
     const isLoading = useSelector(selectors.selectIsLoading)
@@ -41,7 +44,7 @@ const Register = () => {
 
     const form = useForm({
         mode: "onChange",
-        delayError: 500,
+        delayError: 300,
         resolver: yupResolver(schema),
         defaultValues: {
             email: '',
@@ -54,7 +57,6 @@ const Register = () => {
         const result = await form.trigger()
         if (result) {
             dispatch(actions.signup(form.getValues()))
-            // console.log("goi api")
         }
 
     }
@@ -63,6 +65,7 @@ const Register = () => {
         if (message) {
             alert(message)
             dispatch(actions.resetRedux())
+            navigate("/signin")
         }
     }, [message, dispatch])
 
