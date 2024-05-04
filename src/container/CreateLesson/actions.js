@@ -14,3 +14,7 @@ export const getSuggestMeaning = createAction(constants.GET_SUGGEST_MEANING_ACTI
 export const getSuggestMeaningSuccess = createAction(constants.GET_SUGGEST_MEANING_SUCCESS)
 
 export const clearSuggest = createAction(constants.CLEAR_SUGGEST_ACTION)
+
+export const createLesson = createAction(constants.CREATE_LESSON_ACTION)
+
+export const createLessonSuccess = createAction(constants.CREATE_LESSON_SUCCESS)

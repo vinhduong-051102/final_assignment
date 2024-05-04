@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorHare, colorSwan} from "../../constants/colors";
+import {colorEel, colorFireAnt, colorFireArtHover, colorHare, colorSwan} from "../../constants/colors";
 
 export const CreateLessonContainer = styled.div `
   box-sizing: border-box;
@@ -46,23 +46,24 @@ export const CreateTitleContainer = styled.div `
 export const CreateTitleLayout = styled.div `
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 `
 
 export const InputTitle = styled.input `
   box-sizing: border-box;
   padding: 16px 14px;
   border-radius: 12px;
-  border: 2px solid rgb(${colorSwan});
+  border: 2px solid ${props => props.isError ? `rgb(${colorFireArtHover})` : `rgb(${colorSwan})`};
   border-bottom-width: 4px;
   font-size: 18px;
   width: 100%;
-  
+  color: ${props => props.isError ? `rgb(${colorFireAnt})` : `rgb(${colorEel})`};
+
   &:focus-visible {
     outline: none;
   }
   &::placeholder {
-    color: rgb(${colorSwan});
+    color: ${props => props.isError ? `rgb(${colorFireAnt})` : `rgb(${colorEel})`};
   }
 `
 
@@ -70,17 +71,19 @@ export const TextareaDescribe = styled.textarea `
   box-sizing: border-box;
   padding: 16px 14px;
   border-radius: 12px;
-  border: 2px solid rgb(${colorSwan});
+  border: 2px solid ${props => props.isError ? `rgb(${colorFireArtHover})` : `rgb(${colorSwan})`};
   border-bottom-width: 4px;
   font-size: 18px;
   width: 100%;
   resize: none;
   height: 120px;
+  color: ${props => props.isError ? `rgb(${colorFireAnt})` : `rgb(${colorEel})`};
+
   &:focus-visible {
     outline: none;
   }
   &::placeholder {
-    color: rgb(${colorSwan});
+    color: ${props => props.isError ? `rgb(${colorFireAnt})` : `rgb(${colorEel})`};
   }
 `
 

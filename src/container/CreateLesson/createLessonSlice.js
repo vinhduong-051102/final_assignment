@@ -4,6 +4,7 @@ const initialState = {
     isLoading: false,
     listSuggestWord: [],
     listSuggestMeaning: [],
+    message: ""
 };
 
 const createLessonSlice = createSlice({
@@ -25,6 +26,9 @@ const createLessonSlice = createSlice({
         clearSuggest: (state) => {
             state.listSuggestWord = []
             state.listSuggestMeaning = []
+        },
+        createLessonSuccess: (state, action) => {
+            state.message = action.payload
         }
     },
 });
@@ -37,5 +41,8 @@ export const selectListSuggestWord = (state) =>
 
 export const selectListSuggestMeaning = (state) =>
     state.createLessonReducer.listSuggestMeaning;
+
+export const selectMessage = (state) =>
+    state.createLessonReducer.message;
 
 export default createLessonSlice.reducer;

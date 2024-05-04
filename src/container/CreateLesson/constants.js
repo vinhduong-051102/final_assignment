@@ -13,3 +13,7 @@ export const GET_SUGGEST_MEANING_ACTION = `${KEY}/getSuggestMeaning`;
 export const GET_SUGGEST_MEANING_SUCCESS = `${KEY}/getSuggestMeaningSuccess`;
 
 export const CLEAR_SUGGEST_ACTION = `${KEY}/clearSuggest`;
+
+export const CREATE_LESSON_ACTION = `${KEY}/createLesson`;
+
+export const CREATE_LESSON_SUCCESS = `${KEY}/createLessonSuccess`;
