@@ -9,9 +9,10 @@ import {
 import { AssignmentPrompt, AssigmentContainer } from "../commonStyled";
 import speakerIcon from "../../utils/svg/speaker.svg";
 import OptionAnswer from "../../common/OptionAnswer";
-import { useRef } from "react";
+import {useRef, useState} from "react";
 
-const ListenAndChoose = ({ prompt }) => {
+const ListenAndChoose = ({ questions, onSelect }) => {
+  const [itemSelected, setItemSelected] = useState(null)
   const speakerBtnRef = useRef();
   const handleMouseDownOption = () => {
     speakerBtnRef.current.classList.add("mouseDown");
@@ -29,16 +30,29 @@ const ListenAndChoose = ({ prompt }) => {
           onMouseOut={handleMouseUpOption}
         >
           <SpeakerIconBg ref={speakerBtnRef}>
-            <SpeakerIconWrapper>
+            <SpeakerIconWrapper onClick={() => alert()}>
               <SpeakerIcon src={speakerIcon} />
             </SpeakerIconWrapper>
           </SpeakerIconBg>
         </SpeakerBtnLayout>
         <AnswerLayout>
-          <OptionAnswer content={"catches"} no={1} isSelected />
-          <OptionAnswer content={1} no={1} />
-          <OptionAnswer content={1} no={1} />
-          <OptionAnswer content={1} no={1} />
+          {
+            questions.map((item, index) => {
+              return (
+                  <OptionAnswer
+                      key={index}
+                      content={item.content}
+                      no={item.no}
+                      onClick={no => {
+                        setItemSelected(no)
+                        onSelect(no)
+                      }}
+                      isSelected={itemSelected === item.no}
+                  />
+              )
+            })
+          }
+
         </AnswerLayout>
       </AssigmentContentLayout>
     </AssigmentContainer>

@@ -26,9 +26,9 @@ const registerSlice = createSlice({
 });
 
 export const selectIsLoading = (state) =>
-    state.registerSlice.isLoading;
+    state.registerReducer.isLoading;
 
 export const selectMessage = (state) =>
-    state.registerSlice.message;
+    state.registerReducer.message;
 
 export default registerSlice.reducer;

@@ -8,6 +8,7 @@ import Login from "./container/Login";
 import Register from "./container/Register";
 import ErrorPage from "./container/ErrorPage";
 import LayoutWithLogin from "./layout/LayoutWithLogin";
+import Learn from "./container/Learn";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             path={"/learn"}
             element={
                 <LayoutWithLogin>
-                    <Menu><>learn</></Menu>
+                    <Menu><Learn/></Menu>
                 </LayoutWithLogin>
             }
         />
@@ -58,6 +59,10 @@ function App() {
         <Route
             path={"/signup"}
             element={<Register/>}
+        />
+        <Route
+            path={"/assigment"}
+            element={<AssigmentWrapper/>}
         />
         <Route
             path={"*"}

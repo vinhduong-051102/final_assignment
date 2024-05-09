@@ -33,8 +33,6 @@ const CreateLesson = () => {
 
     const [listCard, setListCard] = useState([])
     const [indexItemSelected, setIndexItemSelected] = useState(null)
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
 
 
     const handleAddCard = () => {
@@ -153,8 +151,7 @@ const CreateLesson = () => {
                 const payload = {
                     userId: +userId,
                     wordList: listCard,
-                    title,
-                    description
+                    ...form.getValues()
                 }
                 dispatch(actions.createLesson(payload))
             }

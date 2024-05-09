@@ -2,9 +2,10 @@ import { takeLatest, put, call, debounce } from 'redux-saga/effects';
 import * as constants from './constants';
 import * as actions from './actions';
 import axios from "axios";
+import {aiUrl} from "../../constants/urls";
 
 function* getListSuggestWord(action) {
-    const path = "http://192.168.0.110:6868/suggest_word"
+    const path = `${aiUrl}/suggest_word`
     yield put(actions.actionStart())
     try {
         const res = yield call(
@@ -27,7 +28,7 @@ function* getListSuggestWord(action) {
 }
 
 function* getListSuggestMeaning(action) {
-    const path = "http://192.168.0.110:6868/translate"
+    const path = `${aiUrl}/translate`
     yield put(actions.actionStart())
     try {
         const res = yield call(

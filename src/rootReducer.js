@@ -1,12 +1,14 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import chatReducer from "./container/Chat/chatSlice";
 import createLessonReducer from "./container/CreateLesson/createLessonSlice";
-import registerSlice from "./container/Register/registerSlice";
-import loginSlice from "./container/Login/loginSlice";
+import registerReducer from "./container/Register/registerSlice";
+import loginReducer from "./container/Login/loginSlice";
+import learnReducer from "./container/Learn/learnSlice";
 
 export const rootReducer = combineReducers({
     chatReducer,
     createLessonReducer,
-    registerSlice,
-    loginSlice
+    registerReducer,
+    loginReducer,
+    learnReducer
 });

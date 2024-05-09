@@ -32,12 +32,12 @@ const loginSlice = createSlice({
 });
 
 export const selectIsLoading = (state) =>
-    state.loginSlice.isLoading;
+    state.loginReducer.isLoading;
 
 export const selectMessage = (state) =>
-    state.loginSlice.message;
+    state.loginReducer.message;
 
 export const selectIsLoginSuccess = (state) =>
-    state.loginSlice.isLoginSuccess;
+    state.loginReducer.isLoginSuccess;
 
 export default loginSlice.reducer;

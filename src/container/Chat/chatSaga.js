@@ -3,9 +3,10 @@ import * as constants from './constants';
 import * as actions from './actions';
 import {axiosPost} from "../../utils/request";
 import axios from "axios";
+import { aiUrl } from "../../constants/urls"
 
 function* chat(action) {
-    const path = "http://192.168.0.110:6868/chat"
+    const path = `${aiUrl}/chat`
     yield put(actions.actionStart())
     try {
         const res = yield call(
@@ -29,7 +30,7 @@ function* chat(action) {
 }
 
 function* getListHistory() {
-    const path = "http://192.168.0.110:6868/get_history"
+    const path = `${aiUrl}/get_history`
     yield put(actions.actionStart())
     try {
         const res = yield call(

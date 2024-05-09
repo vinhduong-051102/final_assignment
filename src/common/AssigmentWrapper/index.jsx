@@ -16,6 +16,7 @@ import ChooseAnswerByMeaning from "../../container/ChooseAnswerByMeaning";
 import ChoosePair from "../../container/ChoosePair";
 import DragTag from "../../container/DragTag";
 import SpeakAssigment from "../../container/SpeakAssigment";
+import {useEffect} from "react";
 
 const AssigmentWrapper = () => {
     // dữ liệu cho header
@@ -23,6 +24,33 @@ const AssigmentWrapper = () => {
     const process = 60
     // #Số lần đúng liên tục
     const consecutiveCorrectAnswers = 0
+
+    // Lấy URL hiện tại
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Lấy giá trị của tham số tìm kiếm có tên là 'paramName'
+    const type = urlParams.get('type');
+    const id = urlParams.get('lessonId')
+    const index = urlParams.get("index")
+
+    useEffect(() => {
+        if (type === 'listen') {
+
+        }
+        else if (type === 'speak') {
+
+        }
+        else if (type === 'read') {
+
+        }
+        else {
+
+        }
+    }, [type])
+
+    useEffect(() => {
+
+    }, [id])
 
     return <>
         <AssignmentContainer>
@@ -40,10 +68,10 @@ const AssigmentWrapper = () => {
                 </HeaderLayout>
             </HeaderContainer>
             <BodyContainer>
-                {/*<ListenAndChoose/>*/}
+                <ListenAndChoose onSelect={() => {}} questions={[{content: 1, no: 1}, {content: 1, no: 2}, {content: 1, no: 2}, {content: 1, no: 2}]}/>
                 {/*<ChooseAnswerByMeaning/>*/}
                 {/*<ChoosePair/>*/}
-                <DragTag/>
+                {/*<DragTag/>*/}
                 {/*<SpeakAssigment/>*/}
             </BodyContainer>
             <Footer statusCode={2} answer={"answer"} comment={'comment'}/>
