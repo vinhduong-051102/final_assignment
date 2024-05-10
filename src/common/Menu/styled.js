@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
-    colorIguana,
-    colorMacaw,
-    colorPolar,
-    colorSnow,
-    colorSwan,
-    colorWolf
-} from "../../constants/colors";
-import {NavLink} from "react-router-dom";
+  colorIguana,
+  colorMacaw,
+  colorPolar,
+  colorSnow,
+  colorSwan,
+  colorWolf,
+} from '../../constants/colors';
+import { NavLink } from 'react-router-dom';
 
 export const MenuContainer = styled.div`
   height: 100vh;
@@ -43,7 +43,7 @@ export const SidebarContainer = styled.div`
   }
 `;
 
-export const LogoContainer = styled.div `
+export const LogoContainer = styled.div`
   height: 30px;
   padding: 32px 0 30px 16px;
   @media (max-width: 768px) and (min-width: 426px) {
@@ -53,9 +53,9 @@ export const LogoContainer = styled.div `
   @media (max-width: 425px) {
     display: none;
   }
-`
+`;
 
-export const LogoMobile = styled.img `
+export const LogoMobile = styled.img`
   height: 40px;
   width: 40px;
   @media (min-width: 769px) {
@@ -64,26 +64,26 @@ export const LogoMobile = styled.img `
   @media (max-width: 425px) {
     display: none;
   }
-`
+`;
 
-export const LogoPC = styled.img `
+export const LogoPC = styled.img`
   height: 30px;
   width: 128px;
-  @media (max-width: 768px)  {
+  @media (max-width: 768px) {
     display: none;
   }
-`
+`;
 
-export const ListMenuItemLayout = styled.div `
+export const ListMenuItemLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
   @media (max-width: 425px) {
     flex-direction: row;
   }
-`
+`;
 
-export const MenuItemLayout = styled(NavLink) `
+export const MenuItemLayout = styled(NavLink)`
   height: 40px;
   align-items: center;
   display: flex;
@@ -109,15 +109,13 @@ export const MenuItemLayout = styled(NavLink) `
     justify-content: center;
     padding: 4px;
   }
-  
+`;
 
-`
-
-export const MenuItemIcon = styled.img `
+export const MenuItemIcon = styled.img`
   margin-left: 6px;
   height: 32px;
   padding-right: 0;
-  transition: filter .2s;
+  transition: filter 0.2s;
   width: 32px;
   margin-right: 20px;
   @media (max-width: 768px) {
@@ -127,18 +125,17 @@ export const MenuItemIcon = styled.img `
     height: 50px;
     width: 50px;
   }
-`
+`;
 
-export const MenuItemText = styled.span `
+export const MenuItemText = styled.span`
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   @media (max-width: 768px) {
     display: none;
   }
-  
-`
+`;
 
 export const BodyContainer = styled.div`
   display: flex;

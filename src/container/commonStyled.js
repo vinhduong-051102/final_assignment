@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const AssigmentContainer = styled.div `
+export const AssigmentContainer = styled.div`
   display: grid;
   grid-gap: 24px;
   grid-template-rows: min-content minmax(0, 1fr);
@@ -11,9 +11,9 @@ export const AssigmentContainer = styled.div `
     overflow: visible;
     width: 600px;
   }
-`
+`;
 
-export const AssignmentPrompt = styled.div `
+export const AssignmentPrompt = styled.div`
   font-size: 25px;
   line-height: 1.25;
   margin: 0;
@@ -23,4 +23,4 @@ export const AssignmentPrompt = styled.div `
   @media (min-width: 768px) {
     font-size: 32px;
   }
-`
+`;

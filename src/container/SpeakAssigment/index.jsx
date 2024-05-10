@@ -1,4 +1,4 @@
-import { AssigmentContainer, AssignmentPrompt } from "../commonStyled";
+import { AssigmentContainer, AssignmentPrompt } from '../commonStyled';
 import {
   AssigmentContentLayout,
   AssigmentQuestionContainer,
@@ -12,12 +12,12 @@ import {
   QuestionText,
   QuestionTextSvgContainer,
   SpeakerImg,
-} from "./styled";
-import character5 from "../../assets/character5.png";
-import resourceTalk from "../../utils/svg/resourse_talk.svg";
-import speakerSvg from "../../utils/svg/speaker_question.svg";
-import OptionAnswer from "../../common/OptionAnswer";
-import { micIcon, rightIcon } from "../../constants/icons";
+} from './styled';
+import character5 from '../../assets/character5.png';
+import resourceTalk from '../../utils/svg/resourse_talk.svg';
+import speakerSvg from '../../utils/svg/speaker_question.svg';
+import OptionAnswer from '../../common/OptionAnswer';
+import { micIcon, rightIcon } from '../../constants/icons';
 
 const SpeakAssigment = () => {
   const isRight = false;
@@ -36,8 +36,8 @@ const SpeakAssigment = () => {
               </QuestionTextSvgContainer>
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <QuestionSpeakerIconContainer>

@@ -1,7 +1,7 @@
-import { AssigmentContainer, AssignmentPrompt } from "../commonStyled";
-import { AssigmentContentContainer, AssigmentContentLayout } from "./styled";
-import OptionAnswer from "../../common/OptionAnswer";
-import { useEffect, useState } from "react";
+import { AssigmentContainer, AssignmentPrompt } from '../commonStyled';
+import { AssigmentContentContainer, AssigmentContentLayout } from './styled';
+import OptionAnswer from '../../common/OptionAnswer';
+import { useEffect, useState } from 'react';
 
 const ChoosePair = () => {
   // logic chuyển trạng thái của các đáp án
@@ -74,7 +74,7 @@ const ChoosePair = () => {
     },
   ]);
 
-  const listAnswerData = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  const listAnswerData = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
   const handleClickBtn = (no) => {
     const index = no - 1;

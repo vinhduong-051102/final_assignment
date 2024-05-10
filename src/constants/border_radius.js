@@ -1,1 +1,1 @@
-export const btnBorderRadius = '12px'
+export const btnBorderRadius = '12px';

@@ -5,8 +5,6 @@ export const actionStart = createAction(constants.ACTION_START);
 
 export const actionEnd = createAction(constants.ACTION_END);
 
-export const getListLesson = createAction(constants.GET_LIST_LESSON_ACTION);
+export const getListWord = createAction(constants.GET_LIST_WORD_ACTION);
 
-export const getListLessonSuccess = createAction(
-  constants.GET_LIST_LESSON_SUCCESS
-);
+export const getListWordSuccess = createAction(constants.GET_LIST_WORD_SUCCESS);

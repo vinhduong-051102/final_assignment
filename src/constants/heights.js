@@ -1,1 +1,1 @@
-export const processBarHeight = '16px'
+export const processBarHeight = '16px';

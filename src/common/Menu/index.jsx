@@ -9,9 +9,16 @@ import {
   MenuItemLayout,
   MenuItemIcon,
   MenuItemText,
-} from "./styled";
-import {logoIcon, logoTextIcon, homeIcon, vowIcon, addIcon, assistantIcon} from "../../constants/icons";
-import { Link } from "react-router-dom";
+} from './styled';
+import {
+  logoIcon,
+  logoTextIcon,
+  homeIcon,
+  vowIcon,
+  addIcon,
+  assistantIcon,
+} from '../../constants/icons';
+import { Link } from 'react-router-dom';
 
 const Menu = ({ children }) => {
   return (
@@ -25,19 +32,19 @@ const Menu = ({ children }) => {
         </LogoContainer>
         <ListMenuItemLayout>
           <MenuItemLayout to="/learn">
-            <MenuItemIcon src={homeIcon}/>
+            <MenuItemIcon src={homeIcon} />
             <MenuItemText>học</MenuItemText>
           </MenuItemLayout>
           <MenuItemLayout to="/characters">
-            <MenuItemIcon src={vowIcon}/>
+            <MenuItemIcon src={vowIcon} />
             <MenuItemText>phát âm</MenuItemText>
           </MenuItemLayout>
           <MenuItemLayout to="/chat">
-            <MenuItemIcon src={assistantIcon}/>
+            <MenuItemIcon src={assistantIcon} />
             <MenuItemText>Trợ lý của bạn</MenuItemText>
           </MenuItemLayout>
           <MenuItemLayout to="/add">
-            <MenuItemIcon src={addIcon}/>
+            <MenuItemIcon src={addIcon} />
             <MenuItemText>Thêm mới</MenuItemText>
           </MenuItemLayout>
         </ListMenuItemLayout>

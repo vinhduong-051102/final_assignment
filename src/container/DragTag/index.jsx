@@ -1,4 +1,4 @@
-import { AssigmentContainer, AssignmentPrompt } from "../commonStyled";
+import { AssigmentContainer, AssignmentPrompt } from '../commonStyled';
 import {
   AnswerContainer,
   AnswerInputContainer,
@@ -19,14 +19,18 @@ import {
   AnswerLayoutOther,
   AnswerTextarea,
   OptionAnswer,
-} from "./styled";
-import character5 from "../../assets/character5.png";
-import resourceTalk from "../../utils/svg/resourse_talk.svg";
-import speakerSvg from "../../utils/svg/speaker_question.svg";
-import { useState, useRef, useEffect } from "react";
+} from './styled';
+import character5 from '../../assets/character5.png';
+import resourceTalk from '../../utils/svg/resourse_talk.svg';
+import speakerSvg from '../../utils/svg/speaker_question.svg';
+import { useState, useRef, useEffect } from 'react';
 
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { DROPPABLE_ANSWER_ID, DROPPABLE_FIRST_ROW_ID, DROPPABLE_SECOND_ROW_ID } from "./constants";
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import {
+  DROPPABLE_ANSWER_ID,
+  DROPPABLE_FIRST_ROW_ID,
+  DROPPABLE_SECOND_ROW_ID,
+} from './constants';
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -41,40 +45,40 @@ const DragTag = () => {
   const answerInputContainerRef = useRef(null);
   const [items, setItems] = useState([
     {
-      no: "1",
-      content: "Bạn 1",
+      no: '1',
+      content: 'Bạn 1',
     },
     {
-      no: "2",
-      content: "có 2",
+      no: '2',
+      content: 'có 2',
     },
     {
-      no: "3",
-      content: "khoẻ 3",
+      no: '3',
+      content: 'khoẻ 3',
     },
     {
-      no: "4",
-      content: "không 4",
+      no: '4',
+      content: 'không 4',
     },
     {
-      no: "5",
-      content: "không 5",
+      no: '5',
+      content: 'không 5',
     },
     {
-      no: "6",
-      content: "không 6",
+      no: '6',
+      content: 'không 6',
     },
     {
-      no: "7",
-      content: "không 7",
+      no: '7',
+      content: 'không 7',
     },
     {
-      no: "8",
-      content: "không 8",
+      no: '8',
+      content: 'không 8',
     },
     {
-      no: "9",
-      content: "không 9",
+      no: '9',
+      content: 'không 9',
     },
   ]);
 
@@ -126,7 +130,11 @@ const DragTag = () => {
     }
 
     if (source.droppableId === destination.droppableId) {
-      const items = reorder(getList(source.droppableId), source.index, destination.index);
+      const items = reorder(
+        getList(source.droppableId),
+        source.index,
+        destination.index
+      );
 
       if (source.droppableId === DROPPABLE_FIRST_ROW_ID) {
         setListFirstRowTag(items);
@@ -141,10 +149,14 @@ const DragTag = () => {
             totalItemFirstRowWidth += element.offsetWidth;
           }
         }
-        const firstElementAtSecondRow = document.getElementById(`${items[0].no}`);
+        const firstElementAtSecondRow = document.getElementById(
+          `${items[0].no}`
+        );
         const isFull =
           totalItemFirstRowWidth +
-            (firstElementAtSecondRow ? firstElementAtSecondRow.offsetWidth : 0) >
+            (firstElementAtSecondRow
+              ? firstElementAtSecondRow.offsetWidth
+              : 0) >
           containerWidth;
         if (isFull) {
           setListSecondRowTag(items);
@@ -170,27 +182,36 @@ const DragTag = () => {
         source.droppableId === DROPPABLE_ANSWER_ID &&
         destination.droppableId === DROPPABLE_FIRST_ROW_ID
       ) {
-        const elementDragged = document.getElementById(`${items[source.index].no}`);
+        const elementDragged = document.getElementById(
+          `${items[source.index].no}`
+        );
         const isFull =
-          totalItemFirstRowWidth + (elementDragged ? elementDragged.offsetWidth : 0) >
+          totalItemFirstRowWidth +
+            (elementDragged ? elementDragged.offsetWidth : 0) >
           containerWidth;
         answerToFirst(source, destination, isFull);
       } else if (
         source.droppableId === DROPPABLE_ANSWER_ID &&
         destination.droppableId === DROPPABLE_SECOND_ROW_ID
       ) {
-        const elementDragged = document.getElementById(`${items[source.index].no}`);
+        const elementDragged = document.getElementById(
+          `${items[source.index].no}`
+        );
         const isFull =
-          totalItemFirstRowWidth + (elementDragged ? elementDragged.offsetWidth : 0) >
+          totalItemFirstRowWidth +
+            (elementDragged ? elementDragged.offsetWidth : 0) >
           containerWidth;
         answerToSecond(source, destination, isFull);
       } else if (
         source.droppableId === DROPPABLE_FIRST_ROW_ID &&
         destination.droppableId === DROPPABLE_SECOND_ROW_ID
       ) {
-        const elementDragged = document.getElementById(`${listFirstRowTag[source.index].no}`);
+        const elementDragged = document.getElementById(
+          `${listFirstRowTag[source.index].no}`
+        );
         const isFull =
-          totalItemFirstRowWidth + (elementDragged ? elementDragged.offsetWidth : 0) >
+          totalItemFirstRowWidth +
+            (elementDragged ? elementDragged.offsetWidth : 0) >
           containerWidth;
         firstToSecond(source, destination, isFull);
       } else if (
@@ -216,7 +237,9 @@ const DragTag = () => {
     if (isFull) {
       let isFullUpdate = false;
       let totalWidth = 0;
-      const elementDragged = document.getElementById(`${items[source.index].no}`);
+      const elementDragged = document.getElementById(
+        `${items[source.index].no}`
+      );
       const cloneArr = [...listFirstRowTag];
       cloneArr.splice(destination.index, 0, items[source.index]);
       for (let i = 0; i < cloneArr.length; i++) {
@@ -226,7 +249,8 @@ const DragTag = () => {
           if (element) {
             totalWidth += element.offsetWidth;
             isFullUpdate =
-              totalWidth + (elementDragged ? elementDragged.offsetWidth : 0) > containerWidth;
+              totalWidth + (elementDragged ? elementDragged.offsetWidth : 0) >
+              containerWidth;
           }
         } else {
           const result = move(
@@ -317,9 +341,14 @@ const DragTag = () => {
         }
       }
     }
-    setListFirstRowTag([...listFirstRow, ...storeIndex.map((index) => listSecondRowTag[index])]);
+    setListFirstRowTag([
+      ...listFirstRow,
+      ...storeIndex.map((index) => listSecondRowTag[index]),
+    ]);
     setItems(result[DROPPABLE_ANSWER_ID]);
-    setListSecondRowTag(listSecondRowTag.slice(storeIndex[storeIndex.length - 1] + 1));
+    setListSecondRowTag(
+      listSecondRowTag.slice(storeIndex[storeIndex.length - 1] + 1)
+    );
   };
 
   const secondToAnswer = (source, destination) => {
@@ -376,7 +405,9 @@ const DragTag = () => {
         ...storeIndex.map((index) => result[DROPPABLE_SECOND_ROW_ID][index]),
       ]);
       setListSecondRowTag(() => [
-        ...result[DROPPABLE_SECOND_ROW_ID].slice(storeIndex[storeIndex.length - 1] + 1),
+        ...result[DROPPABLE_SECOND_ROW_ID].slice(
+          storeIndex[storeIndex.length - 1] + 1
+        ),
       ]);
     }
   };
@@ -405,7 +436,10 @@ const DragTag = () => {
       }
     }
     setListFirstRowTag(arr1.slice(0, stopIndex));
-    setListSecondRowTag([...arr1.slice(stopIndex), ...result[DROPPABLE_SECOND_ROW_ID]]);
+    setListSecondRowTag([
+      ...arr1.slice(stopIndex),
+      ...result[DROPPABLE_SECOND_ROW_ID],
+    ]);
   };
 
   useEffect(() => {
@@ -427,8 +461,8 @@ const DragTag = () => {
               </QuestionTextSvgContainer>
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <QuestionSpeakerIconContainer>
@@ -445,13 +479,20 @@ const DragTag = () => {
           <AnswerLayoutPC>
             <DragDropContext onDragEnd={onDragEnd}>
               <AnswerInputContainer ref={answerInputContainerRef}>
-                <Droppable droppableId={DROPPABLE_FIRST_ROW_ID} direction="horizontal">
+                <Droppable
+                  droppableId={DROPPABLE_FIRST_ROW_ID}
+                  direction="horizontal"
+                >
                   {(provided, snapshot) => {
                     return (
                       <div ref={provided.innerRef}>
                         <AnswerInputRow>
                           {listFirstRowTag.map((item, index) => (
-                            <Draggable key={item.no} draggableId={item.no} index={index}>
+                            <Draggable
+                              key={item.no}
+                              draggableId={item.no}
+                              index={index}
+                            >
                               {(provided, snapshot) => (
                                 <OptionAnswer
                                   ref={provided.innerRef}
@@ -471,13 +512,20 @@ const DragTag = () => {
                     );
                   }}
                 </Droppable>
-                <Droppable droppableId={DROPPABLE_SECOND_ROW_ID} direction="horizontal">
+                <Droppable
+                  droppableId={DROPPABLE_SECOND_ROW_ID}
+                  direction="horizontal"
+                >
                   {(provided, snapshot) => {
                     return (
                       <div ref={provided.innerRef}>
                         <AnswerInputRow>
                           {listSecondRowTag.map((item, index) => (
-                            <Draggable key={item.no} draggableId={item.no} index={index}>
+                            <Draggable
+                              key={item.no}
+                              draggableId={item.no}
+                              index={index}
+                            >
                               {(provided, snapshot) => (
                                 <OptionAnswer
                                   ref={provided.innerRef}
@@ -500,11 +548,18 @@ const DragTag = () => {
               </AnswerInputContainer>
               <AnswerTagContainer>
                 <AnswerTagLayout>
-                  <Droppable droppableId={DROPPABLE_ANSWER_ID} direction="horizontal">
+                  <Droppable
+                    droppableId={DROPPABLE_ANSWER_ID}
+                    direction="horizontal"
+                  >
                     {(provided, snapshot) => (
                       <AnswerTagLayout ref={provided.innerRef}>
                         {items.map((item, index) => (
-                          <Draggable key={item.no} draggableId={item.no} index={index}>
+                          <Draggable
+                            key={item.no}
+                            draggableId={item.no}
+                            index={index}
+                          >
                             {(provided, snapshot) => (
                               <OptionAnswer
                                 ref={provided.innerRef}

@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const AssigmentContentContainer = styled.div `
+export const AssigmentContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
-export const AssigmentContentLayout = styled.div `
+export const AssigmentContentLayout = styled.div`
   display: grid;
   text-align: initial;
   grid-gap: 16px 20px;
@@ -20,4 +20,4 @@ export const AssigmentContentLayout = styled.div `
     grid-template-columns: repeat(2, 255px);
     grid-template-rows: repeat(4, 1fr);
   }
-`
+`;
