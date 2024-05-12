@@ -25,8 +25,10 @@ import { object, string, array } from 'yup';
 import { useForm, FormProvider, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../Login/styled';
+import { useNavigate } from 'react-router';
 
 const CreateLesson = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectors.selectIsLoading);
   const listSuggestWord = useSelector(selectors.selectListSuggestWord);
@@ -172,6 +174,7 @@ const CreateLesson = () => {
     if (message) {
       alert(message);
       dispatch(actions.createLessonSuccess(''));
+      navigate('/');
     }
   }, [dispatch, message]);
 

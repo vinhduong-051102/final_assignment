@@ -16,42 +16,25 @@ import ChooseAnswerByMeaning from '../../container/ChooseAnswerByMeaning';
 import ChoosePair from '../../container/ChoosePair';
 import DragTag from '../../container/DragTag';
 import SpeakAssigment from '../../container/SpeakAssigment';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from './actions';
 import * as selectors from './assigmentSlice';
-import { englishWordsWithMeanings } from '../../constants/constants';
-
-const getRandomItems = (arr, input, numItems) => {
-  const result = [];
-  const inputSet = new Set(input);
-
-  while (result.length < numItems) {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    const randomItem = arr[randomIndex];
-
-    if (!inputSet.has(randomItem)) {
-      result.push(randomItem);
-      inputSet.add(randomItem);
-    }
-  }
-
-  return result;
-};
+import { STATUS } from './constants';
+import { useNavigate } from 'react-router';
 
 const AssigmentWrapper = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectors.selectIsLoading);
   const listWord = useSelector(selectors.selectListWord);
-  const [listen, setListen] = useState([]);
+  const question = useSelector(selectors.selectQuestion);
 
-  console.log(listen);
+  const listenRef = useRef(null);
 
-  // dữ liệu cho header
-  // #Tiến độ
-  const process = 60;
-  // #Số lần đúng liên tục
-  const consecutiveCorrectAnswers = 0;
+  const [status, setStatus] = useState(STATUS.clean);
+  const [process, setProcess] = useState(0);
+  const [consecutiveCorrectAnswers, setConsecutiveCorrectAnswers] = useState(0);
 
   // Lấy URL hiện tại
   const urlParams = new URLSearchParams(window.location.search);
@@ -59,41 +42,50 @@ const AssigmentWrapper = () => {
   // Lấy giá trị của tham số tìm kiếm có tên là 'paramName'
   const type = urlParams.get('type');
   const id = urlParams.get('lessonId');
-  const index = urlParams.get('index');
+  const index = +urlParams.get('index');
 
-  useEffect(() => {
-    if (index && listWord.length) {
-      if (type === 'listen') {
-        setListen(() => {
-          return [
-            ...getRandomItems(
-              englishWordsWithMeanings,
-              [
-                {
-                  vocabulary: listWord[+index]?.vocabulary,
-                  meaning: listWord[+index]?.meaning,
-                },
-              ],
-              3
-            ),
-            {
-              vocabulary: listWord[+index]?.vocabulary,
-              meaning: listWord[+index]?.meaning,
-            },
-          ];
-        });
-      } else if (type === 'speak') {
-      } else if (type === 'read') {
+  const handleNext = () => {
+    listenRef?.current.handleResetState();
+    if (status === 1) {
+      const len = question.question.length;
+      if (index + 1 < len) {
+        navigate(`/assigment?type=listen&lessonId=${id}&index=${index + 1}`);
       } else {
+        navigate('/');
       }
     }
-  }, [type, index, listWord]);
+    if (status === 2) {
+      const len = question.question.length;
+      if (index + 1 < len) {
+        navigate(`/assigment?type=listen&lessonId=${id}&index=${index + 1}`);
+      } else {
+        navigate('/');
+      }
+    }
+  };
+
+  const handleCheck = () => {
+    listenRef?.current.handleCheck(setConsecutiveCorrectAnswers);
+    setProcess(((index + 1) / question.question.length) * 100)
+  };
+
+  const handleSkip = () => {};
 
   useEffect(() => {
     if (id) {
       dispatch(actions.getListWord({ lessonId: +id }));
     }
   }, [id]);
+
+  useEffect(() => {
+    if (type && listWord.length) {
+      dispatch(actions.getQuestion({ data: listWord, type }));
+    }
+  }, [type, listWord]);
+
+  useEffect(() => {
+    setStatus(STATUS.clean);
+  }, [index]);
 
   return (
     <>
@@ -105,20 +97,38 @@ const AssigmentWrapper = () => {
             </HeaderCancelBtn>
             <HeaderProcessBarContainer>
               <HeaderProcessBarConsecutiveText>
-                2 lần liên tiếp
+                {consecutiveCorrectAnswers > 1
+                  ? `${consecutiveCorrectAnswers} lần liên tiếp`
+                  : ''}
               </HeaderProcessBarConsecutiveText>
               <HeaderProcessBar percentage={process} />
             </HeaderProcessBarContainer>
           </HeaderLayout>
         </HeaderContainer>
         <BodyContainer>
-          {/*<ListenAndChoose onSelect={() => {}} questions={[{content: 1, no: 1}, {content: 1, no: 2}, {content: 1, no: 2}, {content: 1, no: 2}]}/>*/}
-          {/*<ChooseAnswerByMeaning/>*/}
-          <ChoosePair />
+          {type === 'listen' && question && (
+            <ListenAndChoose
+              ref={listenRef}
+              onSelect={(status) => {
+                setStatus(status);
+              }}
+              currentStatus={status}
+              questions={question.question[index]}
+            />
+          )}
+          {type === 'speak' && <SpeakAssigment />}
+          {type === 'read' && <ChooseAnswerByMeaning />}
+          {/*<ChoosePair />*/}
           {/*<DragTag/>*/}
-          {/*<SpeakAssigment/>*/}
         </BodyContainer>
-        <Footer statusCode={2} answer={'answer'} comment={'comment'} />
+        <Footer
+          statusCode={status}
+          answer={'answer'}
+          comment={'comment'}
+          onCheck={handleCheck}
+          onSkip={handleSkip}
+          onNext={handleNext}
+        />
       </AssignmentContainer>
     </>
   );

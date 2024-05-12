@@ -28,7 +28,14 @@ import {
   colorWalkingFish,
 } from '../../../../constants/colors';
 
-const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
+const Footer = ({
+  statusCode = 0,
+  comment = '',
+  answer = '',
+  onCheck,
+  onSkip,
+  onNext,
+}) => {
   // Trạng thái 0: chưa làm gì
   // Trạng thái 1: trả lời đúng
   // Trạng thái 2: trả lời sai
@@ -141,6 +148,9 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
               }
             >
               <FooterSkipBtn
+                onClick={
+                  statusCode === 0 || statusCode === 3 ? onSkip : () => {}
+                }
                 btnCheckBgc={footerStatus[statusCode].btnSkipBgc}
                 btnCheckBorderColor={
                   footerStatus[statusCode].btnSkipBorderColor
@@ -155,21 +165,37 @@ const Footer = ({ statusCode = 0, comment = '', answer = '' }) => {
             </FooterSkipBtnWrapper>
           )
         }
-
         <FooterCheckBtnWrapper
           btnCheckBgcHover={footerStatus[statusCode].btnCheckBgcHover}
         >
-          <FooterCheckBtn
-            btnCheckBgc={footerStatus[statusCode].btnCheckBgc}
-            btnCheckBorderColor={footerStatus[statusCode].btnCheckBorderColor}
-            disabled={footerStatus[statusCode].isDisabledCheckBtn}
-          >
-            <CheckBtnText
-              btnCheckTextColor={footerStatus[statusCode].btnCheckTextColor}
+          {(statusCode === 3 || statusCode === 0) && (
+            <FooterCheckBtn
+              onClick={statusCode === 3 ? onCheck : () => {}}
+              btnCheckBgc={footerStatus[statusCode].btnCheckBgc}
+              btnCheckBorderColor={footerStatus[statusCode].btnCheckBorderColor}
+              disabled={footerStatus[statusCode].isDisabledCheckBtn}
             >
-              {footerStatus[statusCode].btnCheckText}
-            </CheckBtnText>
-          </FooterCheckBtn>
+              <CheckBtnText
+                btnCheckTextColor={footerStatus[statusCode].btnCheckTextColor}
+              >
+                {footerStatus[statusCode].btnCheckText}
+              </CheckBtnText>
+            </FooterCheckBtn>
+          )}
+          {(statusCode === 1 || statusCode === 2) && (
+            <FooterCheckBtn
+              onClick={onNext}
+              btnCheckBgc={footerStatus[statusCode].btnCheckBgc}
+              btnCheckBorderColor={footerStatus[statusCode].btnCheckBorderColor}
+              disabled={footerStatus[statusCode].isDisabledCheckBtn}
+            >
+              <CheckBtnText
+                btnCheckTextColor={footerStatus[statusCode].btnCheckTextColor}
+              >
+                {footerStatus[statusCode].btnCheckText}
+              </CheckBtnText>
+            </FooterCheckBtn>
+          )}
         </FooterCheckBtnWrapper>
       </FooterLayout>
     </FooterContainer>
