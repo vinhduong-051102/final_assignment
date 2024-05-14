@@ -118,3 +118,11 @@ export const AssignmentContainer = styled.div`
     grid-template-rows: 100px 1fr 140px;
   }
 `;
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

@@ -12,3 +12,19 @@ export const getListWordSuccess = createAction(constants.GET_LIST_WORD_SUCCESS);
 export const getQuestion = createAction(constants.GET_QUESTION_ACTION);
 
 export const getQuestionSuccess = createAction(constants.GET_QUESTION_SUCCESS);
+
+export const getVoice = createAction(constants.GET_VOICE_ACTION);
+
+export const getVoiceSuccess = createAction(constants.GET_VOICE_SUCCESS);
+
+export const resetRedux = createAction(constants.RESET_REDUX);
+
+export const record = createAction(constants.RECORD_ACTION);
+
+export const recordSuccess = createAction(constants.RECORD_SUCCESS);
+
+export const getSpeakScore = createAction(constants.GET_SPEAK_SCORE_ACTION);
+
+export const getSpeakScoreSuccess = createAction(
+  constants.GET_SPEAK_SCORE_SUCCESS
+);

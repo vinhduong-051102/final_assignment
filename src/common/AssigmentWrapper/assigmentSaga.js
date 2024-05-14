@@ -1,10 +1,8 @@
 import { takeLatest, put, call, debounce } from 'redux-saga/effects';
 import * as constants from './constants';
 import * as actions from './actions';
-import { axiosPost } from '../../utils/request';
 import axios from 'axios';
 import { aiUrl } from '../../constants/urls';
-import { getQuestion } from './actions';
 
 function* getListWord(action) {
   const path = `http://localhost:8080/api/v1/lesson/get_list_word?lesson_id=${action.payload.lessonId}`;
@@ -39,7 +37,69 @@ function* getListQuestion(action) {
   }
 }
 
+function* getVoice(action) {
+  const path = `${aiUrl}/get_voice_by_word`;
+  yield put(actions.actionStart());
+  try {
+    const res = yield call(axios.post, path, action.payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (res.status === 200) {
+      const base64String = res.data['base64'];
+      // Chuyển đổi base64 thành ArrayBuffer
+      const arrayBuffer = Uint8Array.from(atob(base64String), (c) =>
+        c.charCodeAt(0)
+      ).buffer;
+
+      // Tạo Blob từ ArrayBuffer
+      const blob = new Blob([arrayBuffer], { type: 'audio/mp3' });
+
+      // Tạo URL cho Blob
+      const blobUrl = URL.createObjectURL(blob);
+      yield put(actions.getVoiceSuccess(blobUrl));
+      yield put(actions.actionEnd());
+    }
+  } catch (error) {
+    yield put(actions.actionEnd());
+  }
+}
+
+function* record(action) {
+  const path = `${aiUrl}/record`;
+  yield put(actions.actionStart());
+  try {
+    const formData = new FormData();
+    formData.append('audio', action.payload);
+    const res = yield call(axios.post, path, formData);
+    if (res.status === 200) {
+      yield put(actions.recordSuccess(res.data.data));
+      yield put(actions.actionEnd());
+    }
+  } catch (error) {
+    yield put(actions.actionEnd());
+  }
+}
+
+function* getSpeakScore(action) {
+  const path = `${aiUrl}/score`;
+  yield put(actions.actionStart());
+  try {
+    const res = yield call(axios.post, path, action.payload);
+    if (res.status === 200) {
+      yield put(actions.getSpeakScoreSuccess(res.data.data));
+      yield put(actions.actionEnd());
+    }
+  } catch (error) {
+    yield put(actions.actionEnd());
+  }
+}
+
 export default function* () {
   yield takeLatest(constants.GET_LIST_WORD_ACTION, getListWord);
   yield takeLatest(constants.GET_QUESTION_ACTION, getListQuestion);
+  yield takeLatest(constants.GET_VOICE_ACTION, getVoice);
+  yield takeLatest(constants.RECORD_ACTION, record);
+  yield takeLatest(constants.GET_SPEAK_SCORE_ACTION, getSpeakScore);
 }

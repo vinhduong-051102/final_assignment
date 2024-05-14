@@ -47,6 +47,20 @@ const Menu = ({ children }) => {
             <MenuItemIcon src={addIcon} />
             <MenuItemText>Thêm mới</MenuItemText>
           </MenuItemLayout>
+          <MenuItemLayout to="/target">
+            <span
+              style={{
+                fontSize: 40,
+                marginRight: 20,
+                marginLeft: 6,
+                width: 32,
+                height: 32,
+              }}
+            >
+              🎯
+            </span>
+            <MenuItemText>Đặt mục tiêu</MenuItemText>
+          </MenuItemLayout>
         </ListMenuItemLayout>
       </SidebarContainer>
       <BodyContainer>{children}</BodyContainer>

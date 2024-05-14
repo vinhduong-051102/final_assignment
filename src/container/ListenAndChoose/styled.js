@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colorMacaw } from '../../constants/colors';
+import { colorMacaw, colorSwan } from '../../constants/colors';
 
 export const AssigmentContentLayout = styled.div`
   display: grid;
@@ -17,10 +17,12 @@ export const SpeakerBtnLayout = styled.div`
 `;
 
 export const SpeakerIconBg = styled.button`
-  background-color: rgb(${colorMacaw});
+  background-color: ${(props) =>
+    props.isLoading ? `rgb(${colorSwan})` : `rgb(${colorMacaw})`};
   border-color: transparent;
-  border-width: 0 0 4px;
-  border-bottom-color: #1799d6;
+  border-width: ${(props) => (props.isLoading ? '0px' : '0 0 4px')};
+  border-bottom-color: ${(props) =>
+    props.isLoading ? 'transparent' : '#1799d6'};
   border-radius: 25%;
   height: 140px;
   width: 140px;
@@ -29,7 +31,8 @@ export const SpeakerIconBg = styled.button`
     height: 100px;
   }
   &:hover {
-    background-color: #1dbefd;
+    background-color: ${(props) =>
+      props.isLoading ? `rgb(${colorSwan})` : `#1dbefd`};
   }
   &.mouseDown {
     border-bottom-width: 0;

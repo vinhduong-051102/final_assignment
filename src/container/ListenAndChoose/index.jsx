@@ -8,12 +8,13 @@ import {
 } from './styled';
 import { AssignmentPrompt, AssigmentContainer } from '../commonStyled';
 import speakerIcon from '../../utils/svg/speaker.svg';
+import loading from '../../utils/svg/loading.svg';
 import OptionAnswer from '../../common/OptionAnswer';
 import { useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import { STATUS } from '../../common/AssigmentWrapper/constants';
 
 const ListenAndChoose = forwardRef(
-  ({ questions, onSelect, currentStatus }, ref) => {
+  ({ questions, onSelect, currentStatus, isLoading, voiceUrl }, ref) => {
     const [itemSelected, setItemSelected] = useState(null);
     const speakerBtnRef = useRef();
     const handleMouseDownOption = () => {
@@ -47,9 +48,14 @@ const ListenAndChoose = forwardRef(
             onMouseUp={handleMouseUpOption}
             onMouseOut={handleMouseUpOption}
           >
-            <SpeakerIconBg ref={speakerBtnRef}>
-              <SpeakerIconWrapper onClick={() => alert()}>
-                <SpeakerIcon src={speakerIcon} />
+            <SpeakerIconBg ref={speakerBtnRef} isLoading={isLoading}>
+              <SpeakerIconWrapper
+                onClick={() => {
+                  const audio = new Audio(voiceUrl);
+                  audio.play();
+                }}
+              >
+                <SpeakerIcon src={isLoading ? loading : speakerIcon} />
               </SpeakerIconWrapper>
             </SpeakerIconBg>
           </SpeakerBtnLayout>
