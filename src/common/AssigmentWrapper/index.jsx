@@ -125,6 +125,29 @@ const AssigmentWrapper = () => {
           dispatch(actions.markComplete(assigmentId));
         }
       }
+    } else {
+      if (index === 0) {
+        listenRef?.current.handleResetState();
+        URL.revokeObjectURL(`${voiceUrl}`);
+      }
+      if (status === 1) {
+        if (index + 1 < 5) {
+          navigate(
+            `/assigment?type=test&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
+        } else {
+          dispatch(actions.markComplete(assigmentId));
+        }
+      }
+      if (status === 2) {
+        if (index + 1 < 5) {
+          navigate(
+            `/assigment?type=test&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
+        } else {
+          dispatch(actions.markComplete(assigmentId));
+        }
+      }
     }
   };
 
@@ -141,6 +164,21 @@ const AssigmentWrapper = () => {
       if (index === 0 || index === 1) {
         chooseRef?.current.handleCheck();
       } else if (index === 2 || index === 3) {
+        dragRef?.current.handleCheck();
+      }
+    }
+    if (type === 'test') {
+      setProcess(((index + 1) / 5) * 100);
+      if (index === 0) {
+        listenRef?.current.handleCheck(setConsecutiveCorrectAnswers);
+      }
+      if (index === 1) {
+        speakRef?.current.handleCheck();
+      } 
+      if (index === 2) {
+        chooseRef?.current.handleCheck();
+      }
+      if (index === 3) {
         dragRef?.current.handleCheck();
       }
     }
@@ -175,6 +213,17 @@ const AssigmentWrapper = () => {
       }
       if (type === 'speak') {
         dispatch(actions.getVoice({ data: question.question[index].question }));
+      }
+      if (type === 'test') {
+        if (index === 0) {
+          dispatch(
+            actions.getVoice({ data: question.question.listen[0].question })
+          );
+        } else if (index === 1) {
+          dispatch(
+            actions.getVoice({ data: question.question.speak[0].question })
+          );
+        }
       }
     }
   }, [index, question, type]);
@@ -300,8 +349,53 @@ const AssigmentWrapper = () => {
                   onStatus={setStatus}
                 />
               )))}
-          {/*<ChoosePair />*/}
-          {/*<DragTag/>*/}
+          {type === 'test' &&
+            question &&
+            ((index === 0 && (
+              <ListenAndChoose
+                isLoading={isLoading}
+                ref={listenRef}
+                onSelect={(status) => {
+                  setStatus(status);
+                }}
+                currentStatus={status}
+                questions={question.question.listen[0]}
+                voiceUrl={voiceUrl}
+              />
+            )) ||
+              (index === 1 && (
+                <SpeakAssigment
+                  ref={speakRef}
+                  question={question.question.speak[0]}
+                  isLoading={isLoading}
+                  voiceUrl={voiceUrl}
+                  onRecord={handleRecord}
+                  audioText={audioText}
+                  onSetStatus={setStatus}
+                />
+              )) ||
+              (index === 2 && (
+                <ChooseAnswerByMeaning
+                  question={question.question.read.choose[0]}
+                  ref={chooseRef}
+                  onSetStatus={setStatus}
+                  status={status}
+                />
+              )) ||
+              (index === 3 && (
+                <DragTag
+                  question={question.question.read.drag[0]}
+                  onStatus={setStatus}
+                  ref={dragRef}
+                />
+              )) ||
+              (index === 4 && (
+                <ChoosePair
+                  question={question.question.read.pair[0]}
+                  ref={pairRef}
+                  onStatus={setStatus}
+                />
+              )))}
         </BodyContainer>
         <Footer
           statusCode={status}
