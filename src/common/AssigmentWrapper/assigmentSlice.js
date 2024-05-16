@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { markCompleteSuccess } from './actions';
 
 const initialState = {
   isLoading: false,
@@ -7,6 +8,7 @@ const initialState = {
   voiceUrl: '',
   audioText: '',
   score: null,
+  completeMessage: null
 };
 
 const assigmentSlice = createSlice({
@@ -34,6 +36,9 @@ const assigmentSlice = createSlice({
     getSpeakScoreSuccess: (state, action) => {
       state.score = action.payload;
     },
+    markCompleteSuccess: (state, action) => {
+      state.completeMessage = action.payload
+    },
     resetRedux: (state) => {
       state.isLoading = false;
       state.listWord = [];
@@ -41,6 +46,7 @@ const assigmentSlice = createSlice({
       state.voiceUrl = '';
       state.audioText = '';
       state.score = null;
+      state.completeMessage = null;
     },
   },
 });
@@ -56,5 +62,7 @@ export const selectVoiceUrl = (state) => state.assigmentReducer.voiceUrl;
 export const selectAudioText = (state) => state.assigmentReducer.audioText;
 
 export const selectScore = (state) => state.assigmentReducer.score;
+
+export const selectCompleteMessage = (state) => state.assigmentReducer.completeMessage
 
 export default assigmentSlice.reducer;

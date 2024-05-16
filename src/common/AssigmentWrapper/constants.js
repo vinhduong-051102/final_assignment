@@ -32,3 +32,7 @@ export const RECORD_SUCCESS = `${KEY}/recordSuccess`;
 export const GET_SPEAK_SCORE_ACTION = `${KEY}/getSpeakScore`;
 
 export const GET_SPEAK_SCORE_SUCCESS = `${KEY}/getSpeakScoreSuccess`;
+
+export const MARK_COMPLETE_ACTION = `${KEY}/markComplete`;
+
+export const MARK_COMPLETE_SUCCESS = `${KEY}/markCompleteSuccess`;

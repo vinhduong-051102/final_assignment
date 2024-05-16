@@ -1,9 +1,10 @@
 import { AssigmentContainer, AssignmentPrompt } from '../commonStyled';
 import { AssigmentContentContainer, AssigmentContentLayout } from './styled';
 import OptionAnswer from '../../common/OptionAnswer';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
+import { STATUS } from '../../common/AssigmentWrapper/constants';
 
-const ChoosePair = () => {
+const ChoosePair = forwardRef(({ question, onStatus }, ref) => {
   // logic chuyển trạng thái của các đáp án
   // TH1: Chưa chọn gì thì các nút ở trạng thái cơ bản
   // TH2: Chọn 1 nút thì nút đó ở trạng thái selected
@@ -12,73 +13,34 @@ const ChoosePair = () => {
 
   // Nguyên tắc: Chỉ các nút ở trạng thái cơ bản mới có thể ấn được
   // Nút đang selected mà chọn lại thì trở lại trạng thái cơ bản
-
+  const listAnswerData = [
+    ...question.vocabularies.map((item) => ({
+      key: item.key,
+      no: item.no,
+      content: item.vocabulary,
+    })),
+    ...question.meanings.map((item) => ({
+      key: item.key,
+      no: item.no,
+      content: item.meaning,
+    })),
+  ];
   const [vocabularySelected, setVocabularySelected] = useState(null);
   const [meaningSelected, setMeaningSelected] = useState(null);
-  const [listStatusAnswer, setListStatusAnswer] = useState([
-    {
-      no: 1,
+  const [listStatusAnswer, setListStatusAnswer] = useState(() => {
+    return listAnswerData.map((item) => ({
+      no: item.no,
       isSelected: false,
       isWrong: false,
       isRight: false,
       isDisabled: false,
-    },
-    {
-      no: 2,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-    {
-      no: 3,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-    {
-      no: 4,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-    {
-      no: 5,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-    {
-      no: 6,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-    {
-      no: 7,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-    {
-      no: 8,
-      isSelected: false,
-      isWrong: false,
-      isRight: false,
-      isDisabled: false,
-    },
-  ]);
-
-  const listAnswerData = ['1', '2', '3', '4', '5', '6', '7', '8'];
+      key: item.key,
+    }));
+  });
 
   const handleClickBtn = (no) => {
     const index = no - 1;
-    const isMeaning = no <= 4;
+    const isMeaning = no <= 5;
     // Các answer có no <= 4 là meaning còn lại là vocabulary
     if (listStatusAnswer[index].isSelected) {
       if (isMeaning) {
@@ -100,7 +62,7 @@ const ChoosePair = () => {
           setMeaningSelected(null);
           return [
             ...prev
-              .slice(0, 4)
+              .slice(0, 5)
               .map((item) => {
                 return { ...item, isSelected: false };
               })
@@ -111,14 +73,14 @@ const ChoosePair = () => {
                 }
                 return item;
               }),
-            ...prev.slice(4),
+            ...prev.slice(5),
           ];
         } else {
           setVocabularySelected(null);
           return [
-            ...prev.slice(0, 4),
+            ...prev.slice(0, 5),
             ...prev
-              .slice(4)
+              .slice(5)
               .map((item) => ({ ...item, isSelected: false }))
               .map((item) => {
                 if (item.no === no) {
@@ -150,7 +112,7 @@ const ChoosePair = () => {
     });
     setTimeout(() => {
       setListStatusAnswer((prev) => {
-        return prev.map((item) => {
+        const res = prev.map((item) => {
           if (item.no === vocabularySelected || item.no === meaningSelected) {
             return {
               ...item,
@@ -161,6 +123,11 @@ const ChoosePair = () => {
           }
           return item;
         });
+        const isComplete = !res.some(item => item.isDisabled === false);
+        if (isComplete) {
+          onStatus(STATUS.right)
+        }
+        return res
       });
     }, animationTime);
     setVocabularySelected(null);
@@ -201,10 +168,16 @@ const ChoosePair = () => {
   };
 
   useEffect(() => {
+    
     if (vocabularySelected && meaningSelected) {
-      handleRight();
-      // Gọi API check kết quả
-      // Dù đúng hay sai đều setState cho vocabularySelected và meaningSelected thành null
+      const vocabularyKey = listAnswerData.find(item => item.no === vocabularySelected).key
+      const meaningKey = listAnswerData.find(item => item.no === meaningSelected).key
+      if (vocabularyKey === meaningKey) {
+        handleRight();
+      }
+      else {
+        handleWrong()
+      }
     }
   }, [vocabularySelected, meaningSelected]);
 
@@ -216,9 +189,9 @@ const ChoosePair = () => {
           {listAnswerData.map((answer, index) => {
             return (
               <OptionAnswer
-                no={index + 1}
+                no={answer.no}
                 key={index}
-                content={answer}
+                content={answer.content}
                 isDisabled={listStatusAnswer[index].isDisabled}
                 isRight={listStatusAnswer[index].isRight}
                 isWrong={listStatusAnswer[index].isWrong}
@@ -237,6 +210,6 @@ const ChoosePair = () => {
       </AssigmentContentContainer>
     </AssigmentContainer>
   );
-};
+});
 
 export default ChoosePair;

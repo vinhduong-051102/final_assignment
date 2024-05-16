@@ -12,33 +12,65 @@ import {
 } from './styled';
 import resourceTalk from '../../utils/svg/resourse_talk.svg';
 import OptionAnswer from '../../common/OptionAnswer';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import { STATUS } from '../../common/AssigmentWrapper/constants';
 
-const ChooseAnswerByMeaning = () => {
-  return (
-    <AssigmentContainer>
-      <AssignmentPrompt>Chọn nghĩa đúng</AssignmentPrompt>
-      <AssigmentContentLayout>
-        <AssigmentMeaningContainer>
-          <AssigmentMeaningLayout>
-            <AssigmentMeaningImgContainer>
-              <img src={character1} />
-            </AssigmentMeaningImgContainer>
-            <AssigmentMeaningTextContainer>
-              <MeaningTextSvgContainer>
-                <img src={resourceTalk} />
-              </MeaningTextSvgContainer>
-              <MeaningText>hello</MeaningText>
-            </AssigmentMeaningTextContainer>
-          </AssigmentMeaningLayout>
-        </AssigmentMeaningContainer>
-        <AnswerContentLayout>
-          <OptionAnswer content={1} no={1} isSelected />
-          <OptionAnswer content={1} no={1} />
-          <OptionAnswer content={1} no={1} />
-        </AnswerContentLayout>
-      </AssigmentContentLayout>
-    </AssigmentContainer>
-  );
-};
+const ChooseAnswerByMeaning = forwardRef(
+  ({ question, onSetStatus, status }, ref) => {
+    const [itemSelected, setItemSelected] = useState(null);
+
+    useImperativeHandle(ref, () => ({
+      handleCheck: () => {
+        if (itemSelected.key === question.key) {
+          onSetStatus(STATUS.right);
+        } else {
+          onSetStatus(STATUS.wrong);
+        }
+      },
+      handleResetState: () => {
+        setItemSelected(null)
+      }
+    }));
+
+    return (
+      <AssigmentContainer>
+        <AssignmentPrompt>Chọn nghĩa đúng</AssignmentPrompt>
+        <AssigmentContentLayout>
+          <AssigmentMeaningContainer>
+            <AssigmentMeaningLayout>
+              <AssigmentMeaningImgContainer>
+                <img src={character1} />
+              </AssigmentMeaningImgContainer>
+              <AssigmentMeaningTextContainer>
+                <MeaningTextSvgContainer>
+                  <img src={resourceTalk} />
+                </MeaningTextSvgContainer>
+                <MeaningText>{question.question}</MeaningText>
+              </AssigmentMeaningTextContainer>
+            </AssigmentMeaningLayout>
+          </AssigmentMeaningContainer>
+          <AnswerContentLayout>
+            {question.answer.map((a) => {
+              return (
+                <OptionAnswer
+                  content={a.meaning}
+                  no={a.no}
+                  isSelected={itemSelected && itemSelected.no === a.no}
+                  key={a.no}
+                  onClick={() => {
+                    if (status === STATUS.clean || status === STATUS.wait) {
+                      onSetStatus(STATUS.wait);
+                      setItemSelected(a);
+                    }
+                  }}
+                />
+              );
+            })}
+          </AnswerContentLayout>
+        </AssigmentContentLayout>
+      </AssigmentContainer>
+    );
+  }
+);
 
 export default ChooseAnswerByMeaning;

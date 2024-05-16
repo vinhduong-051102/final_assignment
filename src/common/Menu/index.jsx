@@ -18,6 +18,7 @@ import {
   addIcon,
   assistantIcon,
 } from '../../constants/icons';
+import targetIcon from '../../utils/svg/target_icon.svg';
 import { Link } from 'react-router-dom';
 
 const Menu = ({ children }) => {
@@ -48,17 +49,7 @@ const Menu = ({ children }) => {
             <MenuItemText>Thêm mới</MenuItemText>
           </MenuItemLayout>
           <MenuItemLayout to="/target">
-            <span
-              style={{
-                fontSize: 40,
-                marginRight: 20,
-                marginLeft: 6,
-                width: 32,
-                height: 32,
-              }}
-            >
-              🎯
-            </span>
+            <MenuItemIcon src={targetIcon} />
             <MenuItemText>Đặt mục tiêu</MenuItemText>
           </MenuItemLayout>
         </ListMenuItemLayout>

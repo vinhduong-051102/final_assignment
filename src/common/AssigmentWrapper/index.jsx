@@ -33,11 +33,14 @@ const AssigmentWrapper = () => {
   const question = useSelector(selectors.selectQuestion);
   const voiceUrl = useSelector(selectors.selectVoiceUrl);
   const audioText = useSelector(selectors.selectAudioText);
-  const score = useSelector(selectors.selectScore)
-  console.log(score)
+  const score = useSelector(selectors.selectScore);
+  const completeMessage = useSelector(selectors.selectCompleteMessage);
 
   const listenRef = useRef(null);
   const speakRef = useRef(null);
+  const chooseRef = useRef(null);
+  const dragRef = useRef(null);
+  const pairRef = useRef(null);
 
   const [status, setStatus] = useState(STATUS.clean);
   const [process, setProcess] = useState(0);
@@ -50,6 +53,7 @@ const AssigmentWrapper = () => {
   const type = urlParams.get('type');
   const id = urlParams.get('lessonId');
   const index = +urlParams.get('index');
+  const assigmentId = +urlParams.get('assigmentId');
 
   const handleNext = () => {
     if (type === 'listen') {
@@ -58,51 +62,87 @@ const AssigmentWrapper = () => {
       if (status === 1) {
         const len = question.question.length;
         if (index + 1 < len) {
-          navigate(`/assigment?type=listen&lessonId=${id}&index=${index + 1}`);
+          navigate(
+            `/assigment?type=listen&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
         } else {
-          navigate('/');
+          dispatch(actions.markComplete(assigmentId));
         }
       }
       if (status === 2) {
         const len = question.question.length;
         if (index + 1 < len) {
-          navigate(`/assigment?type=listen&lessonId=${id}&index=${index + 1}`);
+          navigate(
+            `/assigment?type=listen&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
         } else {
-          navigate('/');
+          dispatch(actions.markComplete(assigmentId));
         }
       }
-    }
-    else if (type === 'speak') {
+    } else if (type === 'speak') {
       URL.revokeObjectURL(`${voiceUrl}`);
-      dispatch(actions.getSpeakScoreSuccess(null))
+      dispatch(actions.getSpeakScoreSuccess(null));
       if (status === 1) {
         const len = question.question.length;
         if (index + 1 < len) {
-          navigate(`/assigment?type=speak&lessonId=${id}&index=${index + 1}`);
+          navigate(
+            `/assigment?type=speak&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
         } else {
-          navigate('/');
+          dispatch(actions.markComplete(assigmentId));
         }
       }
       if (status === 2) {
         const len = question.question.length;
         if (index + 1 < len) {
-          navigate(`/assigment?type=speak&lessonId=${id}&index=${index + 1}`);
+          navigate(
+            `/assigment?type=speak&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
         } else {
-          navigate('/');
+          dispatch(actions.markComplete(assigmentId));
+        }
+      }
+    } else if (type === 'read') {
+      if (index < 2) {
+        chooseRef?.current.handleResetState();
+      }
+      if (status === 1) {
+        if (index + 1 < 5) {
+          navigate(
+            `/assigment?type=read&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
+        } else {
+          dispatch(actions.markComplete(assigmentId));
+        }
+      }
+      if (status === 2) {
+        const len = question.question.length;
+        if (index + 1 < 5) {
+          navigate(
+            `/assigment?type=read&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
+          );
+        } else {
+          dispatch(actions.markComplete(assigmentId));
         }
       }
     }
-
   };
 
   const handleCheck = () => {
     if (type === 'listen') {
       listenRef?.current.handleCheck(setConsecutiveCorrectAnswers);
       setProcess(((index + 1) / question.question.length) * 100);
-
     }
     if (type === 'speak') {
       speakRef?.current.handleCheck();
+    }
+    if (type === 'read') {
+      setProcess(((index + 1) / 5) * 100);
+      if (index === 0 || index === 1) {
+        chooseRef?.current.handleCheck();
+      } else if (index === 2 || index === 3) {
+        dragRef?.current.handleCheck();
+      }
     }
   };
 
@@ -153,20 +193,33 @@ const AssigmentWrapper = () => {
         setProcess(((index + 1) / question.question.length) * 100);
         if (score >= 0.7) {
           setStatus(STATUS.right);
-        }
-        else {
+        } else {
           setStatus(STATUS.wrong);
         }
       }
     }
-  }, [type, score])
+  }, [type, score]);
+
+  useEffect(() => {
+    if (completeMessage) {
+      alert(completeMessage);
+      navigate('/');
+    }
+  }, [completeMessage]);
 
   return (
     <>
       <AssignmentContainer>
         <HeaderContainer>
           <HeaderLayout>
-            <HeaderCancelBtn>
+            <HeaderCancelBtn
+              onClick={() => {
+                const res = confirm('Bạn có chắc chắn muốn thoát không ?');
+                if (res) {
+                  navigate('/');
+                }
+              }}
+            >
               <XMarkIcon src={xIcon} />
             </HeaderCancelBtn>
             <HeaderProcessBarContainer>
@@ -208,7 +261,45 @@ const AssigmentWrapper = () => {
               onSetStatus={setStatus}
             />
           )}
-          {type === 'read' && <ChooseAnswerByMeaning />}
+          {type === 'read' &&
+            question &&
+            ((index === 0 && (
+              <ChooseAnswerByMeaning
+                question={question.question.choose[0]}
+                ref={chooseRef}
+                onSetStatus={setStatus}
+                status={status}
+              />
+            )) ||
+              (index === 1 && (
+                <ChooseAnswerByMeaning
+                  question={question.question.choose[1]}
+                  ref={chooseRef}
+                  onSetStatus={setStatus}
+                  status={status}
+                />
+              )) ||
+              (index === 2 && (
+                <DragTag
+                  question={question.question.drag[0]}
+                  onStatus={setStatus}
+                  ref={dragRef}
+                />
+              )) ||
+              (index === 3 && (
+                <DragTag
+                  question={question.question.drag[1]}
+                  onStatus={setStatus}
+                  ref={dragRef}
+                />
+              )) ||
+              (index === 4 && (
+                <ChoosePair
+                  question={question.question.pair[0]}
+                  ref={pairRef}
+                  onStatus={setStatus}
+                />
+              )))}
           {/*<ChoosePair />*/}
           {/*<DragTag/>*/}
         </BodyContainer>

@@ -31,6 +31,8 @@ import {
   DROPPABLE_FIRST_ROW_ID,
   DROPPABLE_SECOND_ROW_ID,
 } from './constants';
+import { forwardRef, useImperativeHandle } from 'react';
+import { STATUS } from '../../common/AssigmentWrapper/constants';
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -41,46 +43,23 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const DragTag = () => {
+const DragTag = forwardRef(({ question, onStatus }, ref) => {
   const answerInputContainerRef = useRef(null);
-  const [items, setItems] = useState([
-    {
-      no: '1',
-      content: 'Bạn 1',
-    },
-    {
-      no: '2',
-      content: 'có 2',
-    },
-    {
-      no: '3',
-      content: 'khoẻ 3',
-    },
-    {
-      no: '4',
-      content: 'không 4',
-    },
-    {
-      no: '5',
-      content: 'không 5',
-    },
-    {
-      no: '6',
-      content: 'không 6',
-    },
-    {
-      no: '7',
-      content: 'không 7',
-    },
-    {
-      no: '8',
-      content: 'không 8',
-    },
-    {
-      no: '9',
-      content: 'không 9',
-    },
-  ]);
+  const [items, setItems] = useState([]);
+
+
+  useImperativeHandle(ref, () => ({
+    handleCheck: () => {
+      const answer = question.answer.join(" ")
+      const userAnswer = [...listFirstRowTag, ...listSecondRowTag].map(i => i.content).join(" ")
+      if (answer === userAnswer) {
+        onStatus(STATUS.right)
+      }
+      else {
+        onStatus(STATUS.wrong)
+      }
+    } 
+  }))
 
   // Danh sách tag ở dòng 1
   const [listFirstRowTag, setListFirstRowTag] = useState([]);
@@ -443,8 +422,23 @@ const DragTag = () => {
   };
 
   useEffect(() => {
-    setContainerWidth(answerInputContainerRef.current.offsetWidth - 150);
+    setContainerWidth(answerInputContainerRef.current.offsetWidth - 20);
   }, []);
+
+  useEffect(() => {
+    if (listFirstRowTag.length) {
+      onStatus(STATUS.wait)
+    } 
+    else {
+      onStatus(STATUS.clean)
+    }
+  }, [listFirstRowTag.length, listSecondRowTag.length])
+
+  useEffect(() => {
+    setItems(() => question.question.map((item, index) => ({content: item, no: `${index}`})))
+    setListFirstRowTag([])
+    setListSecondRowTag([])
+  }, [question])
 
   return (
     <AssigmentContainer>
@@ -470,7 +464,7 @@ const DragTag = () => {
                     <SpeakerImg src={speakerSvg} />
                   </QuestionSpeakerBtn>
                 </QuestionSpeakerIconContainer>
-                <QuestionText>How are you</QuestionText>
+                <QuestionText>{question.sentence}</QuestionText>
               </div>
             </AssigmentQuestionTextContainer>
           </AssigmentQuestionLayout>
@@ -587,6 +581,6 @@ const DragTag = () => {
       </AssigmentContentLayout>
     </AssigmentContainer>
   );
-};
+});
 
 export default DragTag;

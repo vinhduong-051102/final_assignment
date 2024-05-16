@@ -96,10 +96,30 @@ function* getSpeakScore(action) {
   }
 }
 
+function* markComplete(action) {
+  const path = `http://localhost:8080/api/v1/lesson/mark_complete`;
+
+  yield put(actions.actionStart());
+  try {
+    const res = yield call(axios.put, path, action.payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (res.status === 200) {
+      yield put(actions.markCompleteSuccess(res.data.message))
+      yield put(actions.actionEnd());
+    }
+  } catch (error) {
+    yield put(actions.actionEnd());
+  }
+}
+
 export default function* () {
   yield takeLatest(constants.GET_LIST_WORD_ACTION, getListWord);
   yield takeLatest(constants.GET_QUESTION_ACTION, getListQuestion);
   yield takeLatest(constants.GET_VOICE_ACTION, getVoice);
   yield takeLatest(constants.RECORD_ACTION, record);
   yield takeLatest(constants.GET_SPEAK_SCORE_ACTION, getSpeakScore);
+  yield takeLatest(constants.MARK_COMPLETE_ACTION, markComplete)
 }

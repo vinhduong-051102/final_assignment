@@ -28,3 +28,7 @@ export const getSpeakScore = createAction(constants.GET_SPEAK_SCORE_ACTION);
 export const getSpeakScoreSuccess = createAction(
   constants.GET_SPEAK_SCORE_SUCCESS
 );
+
+export const markComplete = createAction(constants.MARK_COMPLETE_ACTION)
+
+export const markCompleteSuccess = createAction(constants.MARK_COMPLETE_SUCCESS)

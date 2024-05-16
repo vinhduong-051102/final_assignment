@@ -70,7 +70,7 @@ const Learn = () => {
                       {index % 2 === 0 && (
                         <>
                           <Link
-                            to={`/assigment?type=listen&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=listen&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[0].id}`}
                           >
                             <LessonMenuItem style={{ left: -0 }}>
                               <span>
@@ -97,7 +97,7 @@ const Learn = () => {
                             </LessonMenuItem>
                           </Link>
                           <Link
-                            to={`/assigment?type=speak&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=speak&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[1].id}`}
                           >
                             <LessonMenuItem style={{ left: -74.884 }}>
                               <span>
@@ -124,7 +124,7 @@ const Learn = () => {
                             </LessonMenuItem>
                           </Link>
                           <Link
-                            to={`/assigment?type=read&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=read&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[2].id}`}
                           >
                             <LessonMenuItem style={{ left: -100 }}>
                               <span>
@@ -151,11 +151,17 @@ const Learn = () => {
                             </LessonMenuItem>
                           </Link>
                           <Link
-                            to={`/assigment?type=test&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=test&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[3].id}`}
                           >
                             <LessonMenuItem
                               style={{ left: -74.884 }}
-                              className="disabled"
+                              className={
+                                lesson.assigmentList[0].isComplete &&
+                                lesson.assigmentList[1].isComplete &&
+                                lesson.assigmentList[2].isComplete
+                                  ? ''
+                                  : 'disabled'
+                              }
                             >
                               <span>
                                 <svg
@@ -187,7 +193,7 @@ const Learn = () => {
                       {index % 2 !== 0 && (
                         <>
                           <Link
-                            to={`/assigment?type=listen&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=listen&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[0].id}`}
                           >
                             <LessonMenuItem style={{ right: -0 }}>
                               <span>
@@ -214,7 +220,7 @@ const Learn = () => {
                             </LessonMenuItem>
                           </Link>
                           <Link
-                            to={`/assigment?type=speak&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=speak&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[1].id}`}
                           >
                             <LessonMenuItem style={{ right: -74.884 }}>
                               <span>
@@ -241,7 +247,7 @@ const Learn = () => {
                             </LessonMenuItem>
                           </Link>
                           <Link
-                            to={`/assigment?type=read&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=read&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[2].id}`}
                           >
                             <LessonMenuItem style={{ right: -100 }}>
                               <span>
@@ -268,11 +274,17 @@ const Learn = () => {
                             </LessonMenuItem>
                           </Link>
                           <Link
-                            to={`/assigment?type=test&lessonId=${lesson.id}&index=0`}
+                            to={`/assigment?type=test&lessonId=${lesson.id}&index=0&assigmentId=${lesson.assigmentList[3].id}`}
                           >
                             <LessonMenuItem
                               style={{ right: -74.884 }}
-                              className="disabled"
+                              className={
+                                lesson.assigmentList[0].isComplete &&
+                                lesson.assigmentList[1].isComplete &&
+                                lesson.assigmentList[2].isComplete
+                                  ? ''
+                                  : 'disabled'
+                              }
                             >
                               <span>
                                 <svg
