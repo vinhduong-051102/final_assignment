@@ -5,6 +5,7 @@ import registerSaga from './container/Register/registerSaga';
 import loginSaga from './container/Login/loginSaga';
 import learnSaga from './container/Learn/learnSaga';
 import assigmentSaga from './common/AssigmentWrapper/assigmentSaga';
+import targetSaga from './container/Target/targetSaga';
 
 export function* rootSaga() {
   yield all([
@@ -14,5 +15,6 @@ export function* rootSaga() {
     loginSaga(),
     learnSaga(),
     assigmentSaga(),
+    targetSaga()
   ]);
 }

@@ -107,12 +107,23 @@ function* markComplete(action) {
       },
     });
     if (res.status === 200) {
-      yield put(actions.markCompleteSuccess(res.data.message))
+      yield put(actions.markCompleteSuccess(res.data.message));
       yield put(actions.actionEnd());
     }
   } catch (error) {
     yield put(actions.actionEnd());
   }
+}
+
+function* createResult(action) {
+  const path = `http://localhost:8080/api/v1/result/create_result`;
+  try {
+    const res = yield call(axios.post, path, action.payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {}
 }
 
 export default function* () {
@@ -121,5 +132,6 @@ export default function* () {
   yield takeLatest(constants.GET_VOICE_ACTION, getVoice);
   yield takeLatest(constants.RECORD_ACTION, record);
   yield takeLatest(constants.GET_SPEAK_SCORE_ACTION, getSpeakScore);
-  yield takeLatest(constants.MARK_COMPLETE_ACTION, markComplete)
+  yield takeLatest(constants.MARK_COMPLETE_ACTION, markComplete);
+  yield takeLatest(constants.CREATE_RESULT_ACTION, createResult);
 }

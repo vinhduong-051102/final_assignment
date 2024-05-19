@@ -123,11 +123,11 @@ const ChoosePair = forwardRef(({ question, onStatus }, ref) => {
           }
           return item;
         });
-        const isComplete = !res.some(item => item.isDisabled === false);
+        const isComplete = !res.some((item) => item.isDisabled === false);
         if (isComplete) {
-          onStatus(STATUS.right)
+          onStatus(STATUS.right);
         }
-        return res
+        return res;
       });
     }, animationTime);
     setVocabularySelected(null);
@@ -168,15 +168,17 @@ const ChoosePair = forwardRef(({ question, onStatus }, ref) => {
   };
 
   useEffect(() => {
-    
     if (vocabularySelected && meaningSelected) {
-      const vocabularyKey = listAnswerData.find(item => item.no === vocabularySelected).key
-      const meaningKey = listAnswerData.find(item => item.no === meaningSelected).key
+      const vocabularyKey = listAnswerData.find(
+        (item) => item.no === vocabularySelected
+      ).key;
+      const meaningKey = listAnswerData.find(
+        (item) => item.no === meaningSelected
+      ).key;
       if (vocabularyKey === meaningKey) {
         handleRight();
-      }
-      else {
-        handleWrong()
+      } else {
+        handleWrong();
       }
     }
   }, [vocabularySelected, meaningSelected]);

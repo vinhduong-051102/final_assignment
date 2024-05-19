@@ -28,8 +28,8 @@ const ChooseAnswerByMeaning = forwardRef(
         }
       },
       handleResetState: () => {
-        setItemSelected(null)
-      }
+        setItemSelected(null);
+      },
     }));
 
     return (

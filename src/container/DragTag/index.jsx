@@ -47,19 +47,19 @@ const DragTag = forwardRef(({ question, onStatus }, ref) => {
   const answerInputContainerRef = useRef(null);
   const [items, setItems] = useState([]);
 
-
   useImperativeHandle(ref, () => ({
     handleCheck: () => {
-      const answer = question.answer.join(" ")
-      const userAnswer = [...listFirstRowTag, ...listSecondRowTag].map(i => i.content).join(" ")
+      const answer = question.answer.join(' ');
+      const userAnswer = [...listFirstRowTag, ...listSecondRowTag]
+        .map((i) => i.content)
+        .join(' ');
       if (answer === userAnswer) {
-        onStatus(STATUS.right)
+        onStatus(STATUS.right);
+      } else {
+        onStatus(STATUS.wrong);
       }
-      else {
-        onStatus(STATUS.wrong)
-      }
-    } 
-  }))
+    },
+  }));
 
   // Danh sách tag ở dòng 1
   const [listFirstRowTag, setListFirstRowTag] = useState([]);
@@ -427,18 +427,22 @@ const DragTag = forwardRef(({ question, onStatus }, ref) => {
 
   useEffect(() => {
     if (listFirstRowTag.length) {
-      onStatus(STATUS.wait)
-    } 
-    else {
-      onStatus(STATUS.clean)
+      onStatus(STATUS.wait);
+    } else {
+      onStatus(STATUS.clean);
     }
-  }, [listFirstRowTag.length, listSecondRowTag.length])
+  }, [listFirstRowTag.length, listSecondRowTag.length]);
 
   useEffect(() => {
-    setItems(() => question.question.map((item, index) => ({content: item, no: `${index}`})))
-    setListFirstRowTag([])
-    setListSecondRowTag([])
-  }, [question])
+    setItems(() =>
+      question.question.map((item, index) => ({
+        content: item,
+        no: `${index}`,
+      }))
+    );
+    setListFirstRowTag([]);
+    setListSecondRowTag([]);
+  }, [question]);
 
   return (
     <AssigmentContainer>

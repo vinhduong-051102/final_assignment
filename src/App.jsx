@@ -9,6 +9,7 @@ import Register from './container/Register';
 import ErrorPage from './container/ErrorPage';
 import LayoutWithLogin from './layout/LayoutWithLogin';
 import Learn from './container/Learn';
+import Target from './container/Target';
 
 function App() {
   return (
@@ -50,6 +51,16 @@ function App() {
           <LayoutWithLogin>
             <Menu>
               <Chat />
+            </Menu>
+          </LayoutWithLogin>
+        }
+      />
+      <Route
+        path={'/target'}
+        element={
+          <LayoutWithLogin>
+            <Menu>
+              <Target />
             </Menu>
           </LayoutWithLogin>
         }

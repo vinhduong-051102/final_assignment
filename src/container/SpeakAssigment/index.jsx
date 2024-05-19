@@ -20,19 +20,19 @@ import OptionAnswer from '../../common/OptionAnswer';
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import loading from '../../utils/svg/loading.svg';
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
-import { useDispatch } from "react-redux";
-import { getSpeakScore } from "../../common/AssigmentWrapper/actions";
+import { useDispatch } from 'react-redux';
+import { getSpeakScore } from '../../common/AssigmentWrapper/actions';
 
 const SpeakAssigment = forwardRef(
   (
     { question, isLoading, voiceUrl, onRecord, audioText, onSetStatus },
     ref
   ) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     useImperativeHandle(ref, () => ({
       handleCheck: () => {
         if (audioText) {
-          dispatch(getSpeakScore({answer: question.answer, user: audioText}))
+          dispatch(getSpeakScore({ answer: question.answer, user: audioText }));
         }
       },
     }));

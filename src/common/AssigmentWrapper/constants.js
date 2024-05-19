@@ -36,3 +36,7 @@ export const GET_SPEAK_SCORE_SUCCESS = `${KEY}/getSpeakScoreSuccess`;
 export const MARK_COMPLETE_ACTION = `${KEY}/markComplete`;
 
 export const MARK_COMPLETE_SUCCESS = `${KEY}/markCompleteSuccess`;
+
+export const CREATE_RESULT_ACTION = `${KEY}/createResult`;
+
+export const CREATE_RESULT_SUCCESS = `${KEY}/createResultSuccess`;

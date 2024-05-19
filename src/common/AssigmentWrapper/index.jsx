@@ -62,6 +62,7 @@ const AssigmentWrapper = () => {
       if (status === 1) {
         const len = question.question.length;
         if (index + 1 < len) {
+          dispatch(actions.createResult({ assigmentId, isPass: true }));
           navigate(
             `/assigment?type=listen&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
@@ -72,6 +73,8 @@ const AssigmentWrapper = () => {
       if (status === 2) {
         const len = question.question.length;
         if (index + 1 < len) {
+          dispatch(actions.createResult({ assigmentId, isPass: false }));
+
           navigate(
             `/assigment?type=listen&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
@@ -83,6 +86,7 @@ const AssigmentWrapper = () => {
       URL.revokeObjectURL(`${voiceUrl}`);
       dispatch(actions.getSpeakScoreSuccess(null));
       if (status === 1) {
+        dispatch(actions.createResult({ assigmentId, isPass: true }));
         const len = question.question.length;
         if (index + 1 < len) {
           navigate(
@@ -93,6 +97,7 @@ const AssigmentWrapper = () => {
         }
       }
       if (status === 2) {
+        dispatch(actions.createResult({ assigmentId, isPass: false }));
         const len = question.question.length;
         if (index + 1 < len) {
           navigate(
@@ -107,6 +112,7 @@ const AssigmentWrapper = () => {
         chooseRef?.current.handleResetState();
       }
       if (status === 1) {
+        dispatch(actions.createResult({ assigmentId, isPass: true }));
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=read&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
@@ -116,7 +122,7 @@ const AssigmentWrapper = () => {
         }
       }
       if (status === 2) {
-        const len = question.question.length;
+        dispatch(actions.createResult({ assigmentId, isPass: false }));
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=read&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
@@ -131,6 +137,7 @@ const AssigmentWrapper = () => {
         URL.revokeObjectURL(`${voiceUrl}`);
       }
       if (status === 1) {
+        dispatch(actions.createResult({ assigmentId, isPass: true }));
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=test&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
@@ -140,6 +147,7 @@ const AssigmentWrapper = () => {
         }
       }
       if (status === 2) {
+        dispatch(actions.createResult({ assigmentId, isPass: false }));
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=test&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
@@ -174,7 +182,7 @@ const AssigmentWrapper = () => {
       }
       if (index === 1) {
         speakRef?.current.handleCheck();
-      } 
+      }
       if (index === 2) {
         chooseRef?.current.handleCheck();
       }

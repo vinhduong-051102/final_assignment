@@ -8,7 +8,7 @@ const initialState = {
   voiceUrl: '',
   audioText: '',
   score: null,
-  completeMessage: null
+  completeMessage: null,
 };
 
 const assigmentSlice = createSlice({
@@ -37,7 +37,7 @@ const assigmentSlice = createSlice({
       state.score = action.payload;
     },
     markCompleteSuccess: (state, action) => {
-      state.completeMessage = action.payload
+      state.completeMessage = action.payload;
     },
     resetRedux: (state) => {
       state.isLoading = false;
@@ -63,6 +63,7 @@ export const selectAudioText = (state) => state.assigmentReducer.audioText;
 
 export const selectScore = (state) => state.assigmentReducer.score;
 
-export const selectCompleteMessage = (state) => state.assigmentReducer.completeMessage
+export const selectCompleteMessage = (state) =>
+  state.assigmentReducer.completeMessage;
 
 export default assigmentSlice.reducer;
