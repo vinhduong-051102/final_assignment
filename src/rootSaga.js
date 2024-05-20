@@ -15,6 +15,6 @@ export function* rootSaga() {
     loginSaga(),
     learnSaga(),
     assigmentSaga(),
-    targetSaga()
+    targetSaga(),
   ]);
 }

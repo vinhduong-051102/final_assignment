@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
   message: '',
-  listTarget: []
+  listTarget: [],
 };
 
 const targetSlice = createSlice({
@@ -22,7 +22,7 @@ const targetSlice = createSlice({
     resetRedux: (state) => {
       state.isLoading = false;
       state.message = '';
-      state.listTarget = []
+      state.listTarget = [];
     },
   },
 });
@@ -31,6 +31,6 @@ export const selectIsLoading = (state) => state.targetReducer.isLoading;
 
 export const selectMessage = (state) => state.targetReducer.message;
 
-export const selectListTarget = (state) => state.targetReducer.listTarget
+export const selectListTarget = (state) => state.targetReducer.listTarget;
 
 export default targetSlice.reducer;
