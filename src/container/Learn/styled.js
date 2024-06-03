@@ -12,6 +12,7 @@ export const LearnLayout = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 50%;
+  gap: 20px;
 `;
 
 export const LearnHeader = styled.div`
@@ -20,6 +21,38 @@ export const LearnHeader = styled.div`
   text-align: center;
   margin-bottom: 20px;
 `;
+
+export const LearnSubHeader = styled.div `
+  font-weight: 700;
+  font-size: 18px;
+
+  margin-bottom: 20px;
+`
+
+export const ResultDiagramLayout = styled.div `
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+`
+
+export const DiagramLayout = styled.div `
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`
+
+export const TargetDiagramLayout = styled.div `
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border: 1px solid #cccccc;
+  padding: 20px;
+  border-radius: 10px;
+`
 
 export const LearnBody = styled.div``;
 

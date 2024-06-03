@@ -89,7 +89,6 @@ const Target = () => {
       title: 'Thao tác',
       key: 'action',
       render: (_, record) => {
-        console.log(record);
         return (
           <Space size="middle">
             <Button type="primary" onClick={() => handleEdit(record)}>
@@ -244,6 +243,7 @@ const Target = () => {
                 value={amount}
                 onChange={(e) => {
                   const { value: inputValue } = e.target;
+                  console.log(inputValue);
                   const reg = /^-?\d*(\.\d*)?$/;
                   if (
                     reg.test(inputValue) ||

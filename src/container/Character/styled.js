@@ -118,3 +118,64 @@ export const Word = styled.div`
   margin-bottom: 5px;
   text-align: center;
 `;
+
+export const PronuceContainer = styled.div`
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+`;
+
+export const PronuceLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const PronunceHeader = styled.div`
+  width: 100%;
+  padding: 25px 15px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  & > p {
+    font-weight: 700;
+    font-size: 16px;
+  }
+`;
+
+export const PronuceBody = styled.div`
+  & > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  & > div > p {
+    margin: 0;
+  }
+  & > div > .vocabulary {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  & > div > .meaning,
+  .ipa {
+    font-size: 20px;
+    color: #a5a3a3;
+  }
+  & > div > button {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+  }
+  & > div > .speakBtn img {
+    width: 20px;
+    height: 20px;
+  }
+`;

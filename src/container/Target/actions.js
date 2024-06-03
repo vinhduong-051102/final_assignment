@@ -26,3 +26,7 @@ export const deleteTarget = createAction(constants.DELETE_TARGET_ACTION);
 export const deleteTargetSuccess = createAction(
   constants.DELETE_TARGET_SUCCESS
 );
+
+export const getTarget = createAction(constants.GET_TARGET_ACTION)
+
+export const getTargetSuccess = createAction(constants.GET_TARGET_SUCCESS)

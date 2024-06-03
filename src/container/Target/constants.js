@@ -19,3 +19,7 @@ export const EDIT_TARGET_SUCCESS = `${KEY}/editTargetSuccess`;
 export const DELETE_TARGET_ACTION = `${KEY}/deleteTarget`;
 
 export const DELETE_TARGET_SUCCESS = `${KEY}/deleteTargetSuccess`;
+
+export const GET_TARGET_ACTION = `${KEY}/getTarget`;
+
+export const GET_TARGET_SUCCESS = `${KEY}/getTargetSuccess`;

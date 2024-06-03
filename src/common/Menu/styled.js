@@ -111,6 +111,34 @@ export const MenuItemLayout = styled(NavLink)`
   }
 `;
 
+export const Logout = styled.div`
+  height: 40px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 4px 8px;
+  color: rgb(${colorWolf});
+  border-radius: 12px;
+  border: 2px solid transparent;
+  &:hover {
+    color: rgb(${colorWolf});
+    background-color: rgb(${colorPolar});
+  }
+  &.active {
+    color: rgb(${colorMacaw});
+    background-color: rgb(${colorIguana});
+    border: 2px solid rgb(132, 216, 255);
+  }
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+  @media (max-width: 425px) {
+    justify-content: center;
+    padding: 4px;
+  }
+`;
+
 export const MenuItemIcon = styled.img`
   margin-left: 6px;
   height: 32px;

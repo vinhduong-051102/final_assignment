@@ -6,6 +6,7 @@ import loginReducer from './container/Login/loginSlice';
 import learnReducer from './container/Learn/learnSlice';
 import assigmentReducer from './common/AssigmentWrapper/assigmentSlice';
 import targetReducer from './container/Target/targetSlice';
+import blogReducer from './container/Blog/blogSlice';
 
 export const rootReducer = combineReducers({
   chatReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   learnReducer,
   assigmentReducer,
   targetReducer,
+  blogReducer
 });

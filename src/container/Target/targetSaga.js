@@ -115,9 +115,25 @@ function* deleteTarget(action) {
   }
 }
 
+function* getTarget(action) {
+  const { userId, dayOfWeek } = action.payload
+  const path = `http://localhost:8080/api/v1/target/get_target?user_id=${userId}&day_of_week=${dayOfWeek}`;
+  yield put(actions.actionStart());
+  try {
+    const res = yield call(axios.get, path);
+    if (res.status === 200) {
+      yield put(actions.getTargetSuccess(res.data.target));
+      yield put(actions.actionEnd());
+    }
+  } catch (error) {
+    yield put(actions.actionEnd());
+  }
+}
+
 export default function* () {
   yield takeLatest(constants.GET_LIST_TARGET_ACTION, getListTarget);
   yield takeLatest(constants.CREATE_TARGET_ACTION, createTarget);
   yield takeLatest(constants.EDIT_TARGET_ACTION, editTarget);
   yield takeLatest(constants.DELETE_TARGET_ACTION, deleteTarget);
+  yield takeLatest(constants.GET_TARGET_ACTION, getTarget);
 }

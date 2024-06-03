@@ -10,6 +10,9 @@ import ErrorPage from './container/ErrorPage';
 import LayoutWithLogin from './layout/LayoutWithLogin';
 import Learn from './container/Learn';
 import Target from './container/Target';
+import Pronuce from './container/Pronunce';
+import Blog from './container/Blog';
+import BlogDetail from './container/BlogDetail';
 
 function App() {
   return (
@@ -65,8 +68,20 @@ function App() {
           </LayoutWithLogin>
         }
       />
+      <Route
+        path={'/blog'}
+        element={
+          <LayoutWithLogin>
+            <Menu>
+              <Blog />
+            </Menu>
+          </LayoutWithLogin>
+        }
+      />
       <Route path={'/signin'} element={<Login />} />
       <Route path={'/signup'} element={<Register />} />
+      <Route path={'/test'} element={<Pronuce />} />
+      <Route path={'/blog_detail'} element={<BlogDetail />} />
       <Route path={'/assigment'} element={<AssigmentWrapper />} />
       <Route path={'*'} element={<ErrorPage />} />
     </Routes>

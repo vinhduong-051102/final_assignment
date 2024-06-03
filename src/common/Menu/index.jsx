@@ -9,6 +9,7 @@ import {
   MenuItemLayout,
   MenuItemIcon,
   MenuItemText,
+  Logout,
 } from './styled';
 import {
   logoIcon,
@@ -19,8 +20,9 @@ import {
   assistantIcon,
 } from '../../constants/icons';
 import targetIcon from '../../utils/svg/target_icon.svg';
-import { Link } from 'react-router-dom';
+import blogIcon from '../../utils/svg/blog_icon.svg';
 
+import { Link } from 'react-router-dom';
 const Menu = ({ children }) => {
   return (
     <MenuContainer>
@@ -51,6 +53,10 @@ const Menu = ({ children }) => {
           <MenuItemLayout to="/target">
             <MenuItemIcon src={targetIcon} />
             <MenuItemText>Đặt mục tiêu</MenuItemText>
+          </MenuItemLayout>
+          <MenuItemLayout to="/blog">
+            <MenuItemIcon src={blogIcon} />
+            <MenuItemText>Bài viết</MenuItemText>
           </MenuItemLayout>
         </ListMenuItemLayout>
       </SidebarContainer>

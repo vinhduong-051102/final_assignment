@@ -36,6 +36,7 @@ const AssigmentWrapper = () => {
   const score = useSelector(selectors.selectScore);
   const completeMessage = useSelector(selectors.selectCompleteMessage);
 
+  const currTimeRef = useRef(Date.now());
   const listenRef = useRef(null);
   const speakRef = useRef(null);
   const chooseRef = useRef(null);
@@ -55,6 +56,22 @@ const AssigmentWrapper = () => {
   const index = +urlParams.get('index');
   const assigmentId = +urlParams.get('assigmentId');
 
+  const getCookie = (name) => {
+    let nameEQ = name + '=';
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1, cookie.length);
+      }
+      if (cookie.indexOf(nameEQ) === 0) {
+        return cookie.substring(nameEQ.length, cookie.length);
+      }
+    }
+    return null;
+  };
+  const userId = +getCookie('id');
+
   const handleNext = () => {
     if (type === 'listen') {
       listenRef?.current.handleResetState();
@@ -62,31 +79,45 @@ const AssigmentWrapper = () => {
       if (status === 1) {
         const len = question.question.length;
         if (index + 1 < len) {
-          dispatch(actions.createResult({ assigmentId, isPass: true }));
+          dispatch(
+            actions.createResult({ assigmentId, isPass: true, userId: +userId })
+          );
           navigate(
             `/assigment?type=listen&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
       if (status === 2) {
         const len = question.question.length;
         if (index + 1 < len) {
-          dispatch(actions.createResult({ assigmentId, isPass: false }));
+          dispatch(
+            actions.createResult({
+              assigmentId,
+              isPass: false,
+              userId: +userId,
+            })
+          );
 
           navigate(
             `/assigment?type=listen&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
     } else if (type === 'speak') {
       URL.revokeObjectURL(`${voiceUrl}`);
       dispatch(actions.getSpeakScoreSuccess(null));
       if (status === 1) {
-        dispatch(actions.createResult({ assigmentId, isPass: true }));
+        dispatch(
+          actions.createResult({ assigmentId, isPass: true, userId: +userId })
+        );
         const len = question.question.length;
         if (index + 1 < len) {
           navigate(
@@ -94,10 +125,14 @@ const AssigmentWrapper = () => {
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
       if (status === 2) {
-        dispatch(actions.createResult({ assigmentId, isPass: false }));
+        dispatch(
+          actions.createResult({ assigmentId, isPass: false, userId: +userId })
+        );
         const len = question.question.length;
         if (index + 1 < len) {
           navigate(
@@ -105,6 +140,8 @@ const AssigmentWrapper = () => {
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
     } else if (type === 'read') {
@@ -112,23 +149,31 @@ const AssigmentWrapper = () => {
         chooseRef?.current.handleResetState();
       }
       if (status === 1) {
-        dispatch(actions.createResult({ assigmentId, isPass: true }));
+        dispatch(
+          actions.createResult({ assigmentId, isPass: true, userId: +userId })
+        );
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=read&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
       if (status === 2) {
-        dispatch(actions.createResult({ assigmentId, isPass: false }));
+        dispatch(
+          actions.createResult({ assigmentId, isPass: false, userId: +userId })
+        );
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=read&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
     } else {
@@ -137,23 +182,31 @@ const AssigmentWrapper = () => {
         URL.revokeObjectURL(`${voiceUrl}`);
       }
       if (status === 1) {
-        dispatch(actions.createResult({ assigmentId, isPass: true }));
+        dispatch(
+          actions.createResult({ assigmentId, isPass: true, userId: +userId })
+        );
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=test&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
       if (status === 2) {
-        dispatch(actions.createResult({ assigmentId, isPass: false }));
+        dispatch(
+          actions.createResult({ assigmentId, isPass: false, userId: +userId })
+        );
         if (index + 1 < 5) {
           navigate(
             `/assigment?type=test&lessonId=${id}&index=${index + 1}&assigmentId=${assigmentId}`
           );
         } else {
           dispatch(actions.markComplete(assigmentId));
+          const amountStored = JSON.parse(localStorage.getItem('amount'));
+          localStorage.setItem('amount', `${amountStored + 1}`);
         }
       }
     }
@@ -263,6 +316,17 @@ const AssigmentWrapper = () => {
       navigate('/');
     }
   }, [completeMessage]);
+
+  useEffect(() => {
+    return () => {
+      const endTime = Date.now();
+      const studyTimeStored = JSON.parse(localStorage.getItem('studyTime'));
+      localStorage.setItem(
+        'studyTime',
+        `${studyTimeStored + endTime - currTimeRef.current}`
+      );
+    };
+  }, []);
 
   return (
     <>
@@ -407,8 +471,10 @@ const AssigmentWrapper = () => {
         </BodyContainer>
         <Footer
           statusCode={status}
-          answer={'answer'}
-          comment={'comment'}
+          answer={type === 'speak' ? audioText : ''}
+          comment={
+            type === 'speak' ? `Bạn phát âm giống ${Math.floor(score * 100)}%` : ''
+          }
           onCheck={handleCheck}
           onSkip={handleSkip}
           onNext={handleNext}
